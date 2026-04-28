@@ -148,8 +148,78 @@
     }
 
     /* ══════════════════════════════════════
-       2-COLUMN CARD GRID (projects & pubs)
+       ABOUT — full-width bio, no image
     ══════════════════════════════════════ */
+    .about-intro {
+      max-width: 700px;
+      margin-bottom: 40px;
+    }
+
+    .about-intro p {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 18px;
+    }
+
+    .about-intro p:last-child { margin-bottom: 0; }
+
+    /* Highlighted pull-quote */
+    .about-pullquote {
+      border-left: 4px solid var(--accent);
+      padding: 14px 24px;
+      margin: 32px 0;
+      background: #fff8f7;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .about-pullquote p {
+      font-family: 'DM Serif Display', serif;
+      font-size: 19px;
+      color: var(--primary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Quick-facts strip */
+    .about-facts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .about-fact {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .about-fact:hover {
+      box-shadow: 0 6px 20px rgba(45,45,107,0.08);
+      transform: translateY(-2px);
+    }
+
+    .about-fact-icon { font-size: 22px; margin-bottom: 8px; }
+
+    .about-fact-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .about-fact-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* ── 2-COLUMN CARD GRID ── */
     .cards-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -227,16 +297,8 @@
     .status-active { background: #dcfce7; color: #16a34a; }
 
     /* ══════════════════════════════════════
-       TIMELINE  — fixed alignment
-       
-       Layout math:
-         tl-track padding-left = 40px
-         line: left 10px, width 2px  → center at 11px from track-left
-         dot:  width/height 12px, left = -(40 - 11 + 6) = -35px from tl-item
-               → dot center = -35 + 6 = -29px from item-left
-                            = 40 - 29 = 11px from track-left  ✓
+       TIMELINE
     ══════════════════════════════════════ */
-
     .tl-group { margin-bottom: 52px; }
     .tl-group:last-child { margin-bottom: 0; }
 
@@ -253,14 +315,13 @@
 
     .tl-track {
       position: relative;
-      padding-left: 40px;  /* ← controls everything */
+      padding-left: 40px;
     }
 
-    /* Vertical line — center at left: 11px */
     .tl-track::before {
       content: '';
       position: absolute;
-      left: 10px;           /* line left edge; center = 10 + 1 = 11px */
+      left: 10px;
       top: 10px;
       width: 2px;
       height: 0;
@@ -269,9 +330,7 @@
       transition: height 1.4s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .tl-track.tl-line-grow::before {
-      height: calc(100% - 20px);
-    }
+    .tl-track.tl-line-grow::before { height: calc(100% - 20px); }
 
     .tl-item {
       position: relative;
@@ -282,16 +341,8 @@
     }
 
     .tl-item:last-child { margin-bottom: 0; }
+    .tl-item.tl-visible { opacity: 1; transform: translateX(0); }
 
-    .tl-item.tl-visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    /* Dot — center must be at 11px from track-left
-       tl-item starts at padding=40px into track
-       so dot left relative to tl-item = 11 - 40 - 6 = -35px
-       dot center from track-left = 40 + (-35) + 6 = 11px ✓  */
     .tl-item::before {
       content: '';
       position: absolute;
@@ -312,7 +363,6 @@
       box-shadow: 0 0 0 5px rgba(232,93,74,0.14);
     }
 
-    /* Card: date left + content right */
     .tl-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -401,31 +451,6 @@
 
     .skill-pill:hover { background: #eae8f5; border-color: var(--primary); }
 
-    /* ── ABOUT ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 40px;
-      align-items: start;
-    }
-
-    .about-img {
-      width: 100%;
-      border-radius: 14px;
-      background: #ddd;
-      aspect-ratio: 1;
-      object-fit: cover;
-      border: 3px solid white;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.1);
-    }
-
-    .about-text p {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.8;
-      margin-bottom: 14px;
-    }
-
     /* ── CONTACT ── */
     .contact-grid {
       display: grid;
@@ -480,12 +505,12 @@
     @media (max-width: 700px) {
       .home-bio-inner { grid-template-columns: 1fr; text-align: center; }
       .home-avatar-placeholder { margin: 0 auto; }
-      .about-grid { grid-template-columns: 1fr; }
       .cards-grid { grid-template-columns: 1fr; }
       .tl-card { grid-template-columns: 1fr; gap: 4px; }
       .tl-track { padding-left: 32px; }
       .tl-track::before { left: 8px; }
       .tl-item::before { left: -27px; }
+      .about-facts { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -501,17 +526,19 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
         <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
         <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
         <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
         <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- HOME -->
+  <!-- ══════════════════════════════════════════
+       HOME
+  ══════════════════════════════════════════ -->
   <section id="home" class="section-light">
     <div class="home-bio-wrap">
       <div class="home-bio-inner">
@@ -521,7 +548,7 @@
         <div class="home-bio-col">
           <h1 class="home-name">Divya Ramroop</h1>
           <p class="home-role">[Your tagline — e.g. Researcher · AI &amp; Health Systems · TU Berlin]</p>
-          <p class="home-bio-text">[Write your short bio here. A couple of sentences about who you are, what you work on, and what drives you.]</p>
+          <p class="home-bio-text">[Write your short one or two line intro here — who you are and what you do.]</p>
         </div>
       </div>
     </div>
@@ -529,8 +556,59 @@
 
   <div class="section-divider"></div>
 
-  <!-- PROJECTS -->
-  <section id="projects" class="section-white">
+  <!-- ══════════════════════════════════════════
+       ABOUT  — now second, full-width bio
+  ══════════════════════════════════════════ -->
+  <section id="about" class="section-white">
+    <div class="inner-page">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-subtitle">A little more about who I am and what drives me.</p>
+
+      <div class="about-intro">
+        <p>[Write a paragraph about your background — where you're from, your journey from medicine into health systems research and AI, and what drew you to these fields.]</p>
+
+        <div class="about-pullquote">
+          <p>[A one-line sentence that captures your mission or philosophy — something like "I believe AI should make healthcare more human, not less."]</p>
+        </div>
+
+        <p>[Write about your current work — what you're focused on right now, what questions you're trying to answer, and why they matter.]</p>
+
+        <p>[Write about your interests, passions, or what you do outside of work — anything that shows the person behind the research.]</p>
+      </div>
+
+      <!-- Quick-facts strip -->
+      <div class="about-facts">
+        <div class="about-fact">
+          <div class="about-fact-icon">📍</div>
+          <div class="about-fact-label">Based in</div>
+          <div class="about-fact-value">Berlin, Germany</div>
+        </div>
+        <div class="about-fact">
+          <div class="about-fact-icon">🎓</div>
+          <div class="about-fact-label">Background</div>
+          <div class="about-fact-value">Medicine · Health Systems · Epidemiology</div>
+        </div>
+        <div class="about-fact">
+          <div class="about-fact-icon">🔬</div>
+          <div class="about-fact-label">Current Focus</div>
+          <div class="about-fact-value">AI in Health · Safe AI · Policy Research</div>
+        </div>
+        <div class="about-fact">
+          <div class="about-fact-icon">🌐</div>
+          <div class="about-fact-label">Languages</div>
+          <div class="about-fact-value">[e.g. English · French · German]</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ══════════════════════════════════════════
+       PROJECTS
+  ══════════════════════════════════════════ -->
+  <section id="projects" class="section-light">
     <div class="inner-page">
       <h2 class="section-title">Projects</h2>
       <p class="section-subtitle">Things I'm building and researching.</p>
@@ -576,8 +654,10 @@
 
   <div class="section-divider"></div>
 
-  <!-- PUBLICATIONS -->
-  <section id="publications" class="section-light">
+  <!-- ══════════════════════════════════════════
+       PUBLICATIONS
+  ══════════════════════════════════════════ -->
+  <section id="publications" class="section-white">
     <div class="inner-page">
       <h2 class="section-title">Publications</h2>
       <p class="section-subtitle">Research papers, articles, and writing.</p>
@@ -604,13 +684,14 @@
 
   <div class="section-divider"></div>
 
-  <!-- EXPERIENCE -->
-  <section id="experience" class="section-white">
+  <!-- ══════════════════════════════════════════
+       EXPERIENCE
+  ══════════════════════════════════════════ -->
+  <section id="experience" class="section-light">
     <div class="inner-page">
       <h2 class="section-title">Experience</h2>
       <p class="section-subtitle">Where I've worked and studied.</p>
 
-      <!-- WORK -->
       <div class="tl-group">
         <p class="tl-group-label">Work</p>
         <div class="tl-track">
@@ -684,7 +765,6 @@
         </div>
       </div>
 
-      <!-- EDUCATION -->
       <div class="tl-group">
         <p class="tl-group-label">Education</p>
         <div class="tl-track">
@@ -735,8 +815,10 @@
 
   <div class="section-divider"></div>
 
-  <!-- SKILLS -->
-  <section id="skills" class="section-light">
+  <!-- ══════════════════════════════════════════
+       SKILLS
+  ══════════════════════════════════════════ -->
+  <section id="skills" class="section-white">
     <div class="inner-page">
       <h2 class="section-title">Skills</h2>
       <p class="section-subtitle">Tools, technologies, and areas of expertise.</p>
@@ -782,25 +864,9 @@
 
   <div class="section-divider"></div>
 
-  <!-- ABOUT -->
-  <section id="about" class="section-white">
-    <div class="inner-page">
-      <h2 class="section-title">About Me</h2>
-      <p class="section-subtitle">A little more about who I am.</p>
-      <div class="about-grid">
-        <img src="" alt="Divya Ramroop" class="about-img">
-        <div class="about-text">
-          <p>[Write a paragraph about your background — where you're from, what drives you, what field you work in.]</p>
-          <p>[Write about your interests, passions, or what you do outside of work.]</p>
-          <p>[Anything else you'd like people to know — values, goals, fun facts.]</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <!-- CONTACT -->
+  <!-- ══════════════════════════════════════════
+       CONTACT
+  ══════════════════════════════════════════ -->
   <section id="contact" class="section-light">
     <div class="inner-page">
       <h2 class="section-title">Contact</h2>
