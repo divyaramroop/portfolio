@@ -345,6 +345,9 @@
           <a class="nav-link" id="nav-experience" onclick="showPage('experience')">Experience</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" id="nav-skills" onclick="showPage('skills')">Skills</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" id="nav-about" onclick="showPage('about')">About</a>
         </li>
         <li class="nav-item">
@@ -358,12 +361,69 @@
   <!-- HOME PAGE -->
   <!-- ══════════════════════════════════════════ -->
   <div id="page-home" class="page active">
-    <div class="hero">
-      <img src="" alt="Divya Ramroop" class="hero-avatar">
-      <h1>Divya Ramroop</h1>
-      <p class="tagline">[Your tagline here — e.g. "Software Engineer · Researcher · Builder"]</p>
-      <button class="hero-cta" onclick="showPage('projects')">View My Work →</button>
+
+    <!-- Bio strip -->
+    <div class="home-bio-wrap">
+      <div class="home-bio-inner">
+        <div class="home-avatar-col">
+          <div class="home-avatar-placeholder">DR</div>
+        </div>
+        <div class="home-bio-col">
+          <h1 class="home-name">Divya Ramroop</h1>
+          <p class="home-role">[Your tagline — e.g. Researcher · AI &amp; Mental Health · TU Berlin]</p>
+          <p class="home-bio-text">[Write your short bio here. A couple of sentences about who you are, what you work on, and what drives you. Keep it warm and human.]</p>
+          <div class="home-bio-links">
+            <a href="#" onclick="showPage('projects')" class="bio-btn">Projects</a>
+            <a href="#" onclick="showPage('contact')" class="bio-btn bio-btn-outline">Contact</a>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- Ongoing Projects -->
+    <div class="home-section-wrap">
+      <div class="home-section-inner">
+        <p class="home-section-label">Ongoing Projects</p>
+        <div class="ongoing-grid">
+          <div class="ongoing-card">
+            <span class="ongoing-dot"></span>
+            <div>
+              <h4>Mental Illness Chatbot</h4>
+              <p>An AI-powered conversational tool designed to support individuals experiencing mental illness — focused on empathy, safety, and accessibility.</p>
+            </div>
+          </div>
+          <div class="ongoing-card">
+            <span class="ongoing-dot"></span>
+            <div>
+              <h4>Safe Use of AI</h4>
+              <p>A study examining frameworks, risks, and best practices around responsible and safe deployment of AI systems in real-world contexts.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Highlight Work -->
+    <div class="home-section-wrap home-section-alt">
+      <div class="home-section-inner">
+        <p class="home-section-label">Highlight Work</p>
+        <div class="highlight-grid">
+          <div class="highlight-card">
+            <div class="highlight-num">01</div>
+            <h4>[Highlight title]</h4>
+            <p>[Short description of this work — a paper, project, or achievement worth spotlighting.]</p>
+            <a href="#" class="card-link">Learn more →</a>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-num">02</div>
+            <h4>[Highlight title]</h4>
+            <p>[Short description of this work — a paper, project, or achievement worth spotlighting.]</p>
+            <a href="#" class="card-link">Learn more →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- ══════════════════════════════════════════ -->
@@ -372,11 +432,12 @@
   <div id="page-projects" class="page">
     <div class="inner-page">
       <h2 class="section-title">Projects</h2>
-      <p class="section-subtitle">Things I've built and shipped.</p>
+      <p class="section-subtitle">Things I'm building and researching.</p>
 
       <div class="project-card">
-        <h3>[Project Title]</h3>
-        <p>[Project description — what it does, why it matters, what problem it solves.]</p>
+        <span class="status-badge status-active">● Ongoing</span>
+        <h3>Mental Illness Chatbot</h3>
+        <p>An AI-powered conversational assistant designed to support individuals experiencing mental illness. The project focuses on empathetic dialogue, clinical safety guardrails, and making mental health support more accessible.</p>
         <span class="tech-badge">[Tech 1]</span>
         <span class="tech-badge">[Tech 2]</span>
         <span class="tech-badge">[Tech 3]</span>
@@ -385,8 +446,9 @@
       </div>
 
       <div class="project-card">
-        <h3>[Project Title]</h3>
-        <p>[Project description — what it does, why it matters, what problem it solves.]</p>
+        <span class="status-badge status-active">● Ongoing</span>
+        <h3>Study of Safe Use of AI</h3>
+        <p>A research study examining the frameworks, risks, and best practices surrounding responsible AI deployment. Explores how AI systems can be used safely across high-stakes domains.</p>
         <span class="tech-badge">[Tech 1]</span>
         <span class="tech-badge">[Tech 2]</span>
         <br>
@@ -394,7 +456,7 @@
       </div>
 
       <div class="project-card">
-        <h3>[Project Title]</h3>
+        <h3>[Additional Project]</h3>
         <p>[Project description — what it does, why it matters, what problem it solves.]</p>
         <span class="tech-badge">[Tech 1]</span>
         <span class="tech-badge">[Tech 2]</span>
@@ -470,7 +532,53 @@
   </div>
 
   <!-- ══════════════════════════════════════════ -->
-  <!-- ABOUT PAGE -->
+  <!-- SKILLS PAGE -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="page-skills" class="page">
+    <div class="inner-page">
+      <h2 class="section-title">Skills</h2>
+      <p class="section-subtitle">Tools, technologies, and areas of expertise.</p>
+
+      <div class="skills-group">
+        <h4 class="skills-group-title">Research &amp; Methods</h4>
+        <div class="skills-pills">
+          <span class="skill-pill">[Skill]</span>
+          <span class="skill-pill">[Skill]</span>
+          <span class="skill-pill">[Skill]</span>
+          <span class="skill-pill">[Skill]</span>
+        </div>
+      </div>
+
+      <div class="skills-group">
+        <h4 class="skills-group-title">Programming &amp; Tools</h4>
+        <div class="skills-pills">
+          <span class="skill-pill">[Skill]</span>
+          <span class="skill-pill">[Skill]</span>
+          <span class="skill-pill">[Skill]</span>
+          <span class="skill-pill">[Skill]</span>
+        </div>
+      </div>
+
+      <div class="skills-group">
+        <h4 class="skills-group-title">AI &amp; Machine Learning</h4>
+        <div class="skills-pills">
+          <span class="skill-pill">[Skill]</span>
+          <span class="skill-pill">[Skill]</span>
+          <span class="skill-pill">[Skill]</span>
+        </div>
+      </div>
+
+      <div class="skills-group">
+        <h4 class="skills-group-title">Languages</h4>
+        <div class="skills-pills">
+          <span class="skill-pill">[Language — e.g. English (Native)]</span>
+          <span class="skill-pill">[Language]</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
   <!-- ══════════════════════════════════════════ -->
   <div id="page-about" class="page">
     <div class="inner-page">
@@ -498,19 +606,19 @@
 
       <div class="contact-grid">
         <div class="contact-card">
-          <div class="icon">✉️</div>
-          <h5>Email</h5>
-          <a href="mailto:your@email.com">[your@email.com]</a>
-        </div>
-        <div class="contact-card">
           <div class="icon">💼</div>
           <h5>LinkedIn</h5>
-          <a href="#" target="_blank">[linkedin.com/in/yourname]</a>
+          <a href="https://linkedin.com/in/divyaramroop" target="_blank">linkedin.com/in/divyaramroop</a>
         </div>
         <div class="contact-card">
-          <div class="icon">🐙</div>
-          <h5>GitHub</h5>
-          <a href="#" target="_blank">[github.com/yourname]</a>
+          <div class="icon">✉️</div>
+          <h5>Personal Email</h5>
+          <a href="mailto:[your-personal@email.com]">[your-personal@email.com]</a>
+        </div>
+        <div class="contact-card">
+          <div class="icon">🏛️</div>
+          <h5>Work Email</h5>
+          <a href="mailto:divya@tu-berlin.de">divya@tu-berlin.de</a>
         </div>
       </div>
     </div>
@@ -526,7 +634,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    const pages = ['home', 'projects', 'publications', 'experience', 'about', 'contact'];
+    const pages = ['home', 'projects', 'publications', 'experience', 'skills', 'about', 'contact'];
 
     function showPage(name) {
       // Hide all pages
