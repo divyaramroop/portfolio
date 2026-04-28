@@ -38,14 +38,12 @@
       z-index: 1000;
       box-shadow: 0 2px 16px rgba(0,0,0,0.06);
     }
-
     .navbar-brand {
       font-family: 'DM Serif Display', serif;
       font-size: 22px;
       color: var(--primary) !important;
       letter-spacing: -0.5px;
     }
-
     .nav-link {
       font-weight: 500;
       font-size: 15px;
@@ -55,18 +53,16 @@
       border-radius: 8px;
       transition: all 0.2s;
     }
-
-    .nav-link:hover,
-    .nav-link.active {
+    .nav-link:hover, .nav-link.active {
       color: var(--primary) !important;
       background: #f0f0f8;
     }
-
     .nav-link.active { font-weight: 600; }
-
     section { scroll-margin-top: 72px; }
 
-    /* ── HOME ── */
+    /* ══════════════════════════════════════
+       HOME
+    ══════════════════════════════════════ */
     .home-bio-wrap {
       background: linear-gradient(160deg, #f8f7f4 60%, #eae8f5 100%);
       padding: 90px 24px 80px;
@@ -74,29 +70,45 @@
       display: flex;
       align-items: center;
     }
-
     .home-bio-inner {
       max-width: 860px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 48px;
+      grid-template-columns: 200px 1fr;
+      gap: 52px;
       align-items: center;
       width: 100%;
     }
 
-    .home-avatar-placeholder {
-      width: 160px;
-      height: 160px;
+    /* Profile photo */
+    .home-avatar-wrap {
+      width: 180px;
+      height: 180px;
+      position: relative;
+    }
+    .home-avatar-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 8px 32px rgba(45,45,107,0.22);
+      border: 4px solid white;
+      display: block;
+    }
+    .home-avatar-fallback {
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--primary), #5a5aaa);
       color: white;
       font-family: 'DM Serif Display', serif;
-      font-size: 42px;
-      display: flex;
+      font-size: 46px;
+      display: none;
       align-items: center;
       justify-content: center;
       box-shadow: 0 8px 30px rgba(45,45,107,0.2);
+      position: absolute;
+      top: 0; left: 0;
     }
 
     .home-name {
@@ -106,7 +118,6 @@
       line-height: 1.1;
       margin-bottom: 6px;
     }
-
     .home-role {
       font-size: 15px;
       color: var(--accent);
@@ -114,15 +125,13 @@
       letter-spacing: 0.3px;
       margin-bottom: 10px;
     }
-
     .home-affiliation {
       font-size: 14px;
       color: var(--muted);
       font-weight: 500;
       margin-bottom: 6px;
-      line-height: 1.5;
+      line-height: 1.6;
     }
-
     .home-location {
       font-size: 13px;
       color: var(--muted);
@@ -131,14 +140,12 @@
       align-items: center;
       gap: 5px;
     }
-
     .home-interests {
       display: flex;
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
     }
-
     .home-interests-label {
       font-size: 12px;
       font-weight: 700;
@@ -147,7 +154,6 @@
       color: var(--muted);
       white-space: nowrap;
     }
-
     .interest-tag {
       display: inline-block;
       background: #eae8f5;
@@ -159,7 +165,6 @@
       border: 1px solid #d4d1ed;
       transition: background 0.2s, border-color 0.2s;
     }
-
     .interest-tag:hover { background: #dddaf5; border-color: var(--primary); }
 
     /* ── INNER PAGES ── */
@@ -168,17 +173,14 @@
       margin: 0 auto;
       padding: 80px 24px;
     }
-
     .section-light { background: var(--light-bg); }
     .section-white { background: #ffffff; }
-
     .section-title {
       font-family: 'DM Serif Display', serif;
       font-size: 34px;
       color: var(--primary);
       margin-bottom: 8px;
     }
-
     .section-subtitle {
       color: var(--muted);
       font-size: 15px;
@@ -186,7 +188,6 @@
       border-bottom: 1px solid var(--border);
       padding-bottom: 20px;
     }
-
     .section-note {
       font-size: 14px;
       color: var(--muted);
@@ -199,16 +200,8 @@
 
     /* ── ABOUT ── */
     .about-intro { max-width: 700px; margin-bottom: 40px; }
-
-    .about-intro p {
-      font-size: 16px;
-      color: var(--muted);
-      line-height: 1.9;
-      margin-bottom: 18px;
-    }
-
+    .about-intro p { font-size: 16px; color: var(--muted); line-height: 1.9; margin-bottom: 18px; }
     .about-intro p:last-child { margin-bottom: 0; }
-
     .about-pullquote {
       border-left: 4px solid var(--accent);
       padding: 14px 24px;
@@ -216,7 +209,6 @@
       background: #fff8f7;
       border-radius: 0 10px 10px 0;
     }
-
     .about-pullquote p {
       font-family: 'DM Serif Display', serif;
       font-size: 19px;
@@ -224,14 +216,12 @@
       line-height: 1.6;
       margin: 0;
     }
-
     .about-facts {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 16px;
       margin-top: 36px;
     }
-
     .about-fact {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -239,28 +229,13 @@
       padding: 18px 20px;
       transition: box-shadow 0.2s, transform 0.2s;
     }
-
     .about-fact:hover { box-shadow: 0 6px 20px rgba(45,45,107,0.08); transform: translateY(-2px); }
     .about-fact-icon { font-size: 22px; margin-bottom: 8px; }
-
-    .about-fact-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 4px;
-    }
-
+    .about-fact-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
     .about-fact-value { font-size: 14px; font-weight: 600; color: var(--primary); }
 
     /* ── 2-COLUMN CARD GRID ── */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
+    .cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     .project-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -271,52 +246,22 @@
       gap: 10px;
       transition: box-shadow 0.2s, transform 0.2s;
     }
-
-    .project-card:hover {
-      box-shadow: 0 8px 32px rgba(45,45,107,0.1);
-      transform: translateY(-3px);
-    }
-
-    .project-card h3 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 18px;
-      color: var(--primary);
-      line-height: 1.3;
-    }
-
+    .project-card:hover { box-shadow: 0 8px 32px rgba(45,45,107,0.1); transform: translateY(-3px); }
+    .project-card h3 { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--primary); line-height: 1.3; }
     .project-card p { color: var(--muted); font-size: 13px; line-height: 1.7; flex: 1; }
     .pub-meta { font-size: 12px; color: var(--muted); font-style: italic; }
     .tech-row { display: flex; flex-wrap: wrap; gap: 6px; }
-
-    .tech-badge {
-      display: inline-block;
-      background: #eae8f5;
-      color: var(--primary);
-      font-size: 11px;
-      font-weight: 600;
-      padding: 3px 10px;
-      border-radius: 20px;
-    }
-
+    .tech-badge { display: inline-block; background: #eae8f5; color: var(--primary); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
     .card-link { color: var(--accent); font-weight: 600; font-size: 13px; text-decoration: none; margin-top: auto; }
     .card-link:hover { text-decoration: underline; color: var(--accent); }
-
-    .status-badge {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 3px 9px;
-      border-radius: 20px;
-      letter-spacing: 0.3px;
-      width: fit-content;
-    }
-
+    .status-badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 20px; letter-spacing: 0.3px; width: fit-content; }
     .status-active { background: #dcfce7; color: #16a34a; }
 
-    /* ── TIMELINE ── */
+    /* ══════════════════════════════════════
+       TIMELINE
+    ══════════════════════════════════════ */
     .tl-group { margin-bottom: 52px; }
     .tl-group:last-child { margin-bottom: 0; }
-
     .tl-group-label {
       font-size: 11px;
       font-weight: 700;
@@ -327,19 +272,12 @@
       padding-bottom: 12px;
       border-bottom: 1px solid var(--border);
     }
-
-    .tl-group-note {
-      font-size: 13px;
-      color: var(--muted);
-      font-style: italic;
-      margin-bottom: 24px;
-    }
+    .tl-group-note { font-size: 13px; color: var(--muted); font-style: italic; margin-bottom: 24px; }
 
     .tl-track {
       position: relative;
       padding-left: 40px;
     }
-
     .tl-track::before {
       content: '';
       position: absolute;
@@ -351,7 +289,6 @@
       border-radius: 2px;
       transition: height 1.4s cubic-bezier(0.22, 1, 0.36, 1);
     }
-
     .tl-track.tl-line-grow::before { height: calc(100% - 20px); }
 
     .tl-item {
@@ -361,10 +298,10 @@
       transform: translateX(-20px);
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
-
     .tl-item:last-child { margin-bottom: 0; }
     .tl-item.tl-visible { opacity: 1; transform: translateX(0); }
 
+    /* dot */
     .tl-item::before {
       content: '';
       position: absolute;
@@ -378,35 +315,60 @@
       z-index: 2;
       transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
     }
-
     .tl-item.tl-current::before {
       background: var(--accent);
       border-color: var(--accent);
       box-shadow: 0 0 0 5px rgba(232,93,74,0.14);
     }
 
+    /* card layout: logo | date | content */
     .tl-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 20px 24px;
+      padding: 18px 22px;
       display: grid;
-      grid-template-columns: 110px 1fr;
-      gap: 20px;
+      grid-template-columns: 48px 100px 1fr;
+      gap: 16px;
       align-items: start;
       transition: box-shadow 0.22s, transform 0.22s, border-color 0.22s;
     }
-
     .tl-card:hover {
       box-shadow: 0 8px 28px rgba(45,45,107,0.09);
       transform: translateY(-2px);
       border-color: #c8c6de;
     }
 
+    /* Logo column */
+    .tl-logo-col {
+      display: flex;
+      align-items: flex-start;
+      padding-top: 2px;
+    }
+    .tl-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      object-fit: contain;
+      border: 1px solid var(--border);
+      background: #fff;
+      padding: 4px;
+    }
+    /* Fallback emoji when no logo */
+    .tl-logo-fallback {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #eae8f5;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
     .tl-date-col { padding-top: 2px; }
-
     .tl-date-range { font-size: 12px; font-weight: 600; color: var(--muted); line-height: 1.6; }
-
     .tl-now-badge {
       display: inline-block;
       margin-top: 6px;
@@ -420,101 +382,31 @@
     }
 
     .tl-company { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--primary); margin-bottom: 3px; line-height: 1.25; }
-    .tl-role { font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 7px; }
+    .tl-role { font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 4px; }
+    .tl-meta { font-size: 12px; color: var(--muted); margin-bottom: 7px; }
     .tl-desc { font-size: 13px; color: var(--muted); line-height: 1.75; }
 
-    /* ══════════════════════════════════════
-       SKILLS — 3 categories
-    ══════════════════════════════════════ */
+    /* ── SKILLS ── */
     .skills-group { margin-bottom: 40px; }
     .skills-group:last-child { margin-bottom: 0; }
-
-    .skills-group-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 16px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
-    }
-
+    .skills-group-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
     .skills-group-icon { font-size: 18px; }
-
-    .skills-group-title {
-      font-weight: 700;
-      font-size: 15px;
-      color: var(--text);
-    }
-
+    .skills-group-title { font-weight: 700; font-size: 15px; color: var(--text); }
     .skills-pills { display: flex; flex-wrap: wrap; gap: 10px; }
-
-    .skill-pill {
-      display: inline-block;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      color: var(--primary);
-      font-size: 13px;
-      font-weight: 500;
-      padding: 7px 16px;
-      border-radius: 50px;
-      transition: background 0.2s, border-color 0.2s;
-    }
-
+    .skill-pill { display: inline-block; background: var(--card-bg); border: 1px solid var(--border); color: var(--primary); font-size: 13px; font-weight: 500; padding: 7px 16px; border-radius: 50px; transition: background 0.2s, border-color 0.2s; }
     .skill-pill:hover { background: #eae8f5; border-color: var(--primary); }
-
-    /* Language pills — slightly different tint */
-    .skill-pill.lang {
-      background: #fff4f2;
-      border-color: #f5c4be;
-      color: var(--accent);
-    }
-
+    .skill-pill.lang { background: #fff4f2; border-color: #f5c4be; color: var(--accent); }
     .skill-pill.lang:hover { background: #ffe8e4; border-color: var(--accent); }
 
     /* ── CONTACT ── */
     .contact-intro { margin-bottom: 36px; margin-top: -16px; }
-
-    .contact-intro h3 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 26px;
-      color: var(--primary);
-      margin-bottom: 8px;
-    }
-
+    .contact-intro h3 { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--primary); margin-bottom: 8px; }
     .contact-intro p { font-size: 15px; color: var(--muted); line-height: 1.7; }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    .contact-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px 24px;
-      text-align: center;
-      transition: box-shadow 0.2s, transform 0.2s;
-      text-decoration: none;
-      display: block;
-    }
-
-    .contact-card:hover {
-      box-shadow: 0 6px 24px rgba(45,45,107,0.09);
-      transform: translateY(-2px);
-      text-decoration: none;
-    }
-
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .contact-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 28px 24px; text-align: center; transition: box-shadow 0.2s, transform 0.2s; text-decoration: none; display: block; }
+    .contact-card:hover { box-shadow: 0 6px 24px rgba(45,45,107,0.09); transform: translateY(-2px); text-decoration: none; }
     .contact-card .icon { font-size: 30px; margin-bottom: 12px; }
-
-    .contact-card h5 {
-      font-weight: 600;
-      font-size: 14px;
-      color: var(--primary);
-      margin-bottom: 6px;
-    }
-
+    .contact-card h5 { font-weight: 600; font-size: 14px; color: var(--primary); margin-bottom: 6px; }
     .contact-card span { color: var(--muted); font-size: 14px; }
     .contact-card:hover span { color: var(--accent); }
 
@@ -522,22 +414,18 @@
     .section-divider { height: 1px; background: var(--border); max-width: 900px; margin: 0 auto; }
 
     /* ── FOOTER ── */
-    footer {
-      background: var(--primary);
-      color: rgba(255,255,255,0.6);
-      text-align: center;
-      padding: 22px;
-      font-size: 13px;
-    }
+    footer { background: var(--primary); color: rgba(255,255,255,0.6); text-align: center; padding: 22px; font-size: 13px; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 700px) {
       .home-bio-inner { grid-template-columns: 1fr; text-align: center; }
-      .home-avatar-placeholder { margin: 0 auto; }
+      .home-avatar-wrap { margin: 0 auto; }
       .home-location { justify-content: center; }
       .home-interests { justify-content: center; }
       .cards-grid { grid-template-columns: 1fr; }
-      .tl-card { grid-template-columns: 1fr; gap: 4px; }
+      .tl-card { grid-template-columns: 40px 1fr; grid-template-rows: auto auto; }
+      .tl-card .tl-date-col { grid-column: 2; grid-row: 1; }
+      .tl-card .tl-content-col { grid-column: 1 / -1; grid-row: 2; }
       .tl-track { padding-left: 32px; }
       .tl-track::before { left: 8px; }
       .tl-item::before { left: -27px; }
@@ -567,17 +455,32 @@
     </div>
   </nav>
 
-  <!-- HOME -->
+  <!-- ══════════════════════════════════════════
+       HOME
+  ══════════════════════════════════════════ -->
   <section id="home" class="section-light">
     <div class="home-bio-wrap">
       <div class="home-bio-inner">
-        <div class="home-avatar-col">
-          <div class="home-avatar-placeholder">DR</div>
+        <div>
+          <!--
+            ADD YOUR PHOTO:
+            Put your photo in the images/ folder and name it profile.jpg
+            It will show as a circle. If the file is missing, initials DR appear.
+          -->
+          <div class="home-avatar-wrap">
+            <img
+              src="images/profile.jpg"
+              alt="Divya Ramroop"
+              class="home-avatar-img"
+              onerror="this.style.display='none'; document.getElementById('avatar-fallback').style.display='flex';"
+            >
+            <div class="home-avatar-fallback" id="avatar-fallback">DR</div>
+          </div>
         </div>
-        <div class="home-bio-col">
+        <div>
           <h1 class="home-name">Divya Ramroop</h1>
           <p class="home-role">Researcher · Health Policies · AI &amp; Health Systems · TU Berlin</p>
-          <p class="home-affiliation">Research Fellow at European Observatory on Health Systems and Policies &amp; Technische Universität Berlin</p>
+          <p class="home-affiliation">Research Fellow at European Observatory on Health Systems and Policies &amp; TU Berlin — Department of Health Care Management</p>
           <p class="home-location">📍 Berlin, Germany</p>
           <div class="home-interests">
             <span class="home-interests-label">Research Interests</span>
@@ -592,7 +495,9 @@
 
   <div class="section-divider"></div>
 
-  <!-- ABOUT -->
+  <!-- ══════════════════════════════════════════
+       ABOUT
+  ══════════════════════════════════════════ -->
   <section id="about" class="section-white">
     <div class="inner-page">
       <h2 class="section-title">About Me</h2>
@@ -601,10 +506,10 @@
       <div class="about-intro">
         <p>[Write a paragraph about your background — where you're from, your journey from medicine into health systems research and AI, and what drew you to these fields.]</p>
         <div class="about-pullquote">
-          <p>[A one-line sentence that captures your mission or philosophy — something like "I believe AI should make healthcare more human, not less."]</p>
+          <p>[A one-line sentence that captures your mission or philosophy — e.g. "I believe AI should make healthcare more human, not less."]</p>
         </div>
-        <p>[Write about your current work — what you're focused on right now, what questions you're trying to answer, and why they matter.]</p>
-        <p>[Write about your interests, passions, or what you do outside of work — anything that shows the person behind the research.]</p>
+        <p>[Write about your current work — what you're focused on right now and why it matters.]</p>
+        <p>[Write about your interests, passions, or what you do outside of work.]</p>
       </div>
 
       <div class="about-facts">
@@ -634,7 +539,9 @@
 
   <div class="section-divider"></div>
 
-  <!-- PROJECTS -->
+  <!-- ══════════════════════════════════════════
+       PROJECTS
+  ══════════════════════════════════════════ -->
   <section id="projects" class="section-light">
     <div class="inner-page">
       <h2 class="section-title">Projects</h2>
@@ -653,7 +560,6 @@
           </div>
           <a href="#" class="card-link">View Project →</a>
         </div>
-
         <div class="project-card">
           <span class="status-badge status-active">● Ongoing</span>
           <h3>Study of Safe Use of AI</h3>
@@ -664,7 +570,6 @@
           </div>
           <a href="#" class="card-link">View Project →</a>
         </div>
-
         <div class="project-card">
           <h3>[Additional Project]</h3>
           <p>[Project description — what it does, why it matters, what problem it solves.]</p>
@@ -680,12 +585,13 @@
 
   <div class="section-divider"></div>
 
-  <!-- PUBLICATIONS -->
+  <!-- ══════════════════════════════════════════
+       PUBLICATIONS
+  ══════════════════════════════════════════ -->
   <section id="publications" class="section-white">
     <div class="inner-page">
       <h2 class="section-title">Publications</h2>
       <p class="section-subtitle">Research papers, articles, and writing.</p>
-
       <div class="cards-grid">
         <div class="project-card">
           <h3>[Publication / Article Title]</h3>
@@ -693,7 +599,6 @@
           <p>[Short summary of what this paper or article is about and its key contribution.]</p>
           <a href="#" class="card-link">Read more →</a>
         </div>
-
         <div class="project-card">
           <h3>[Publication / Article Title]</h3>
           <p class="pub-meta">[Journal / Conference / Platform] · [Year]</p>
@@ -706,77 +611,161 @@
 
   <div class="section-divider"></div>
 
-  <!-- EXPERIENCE -->
+  <!-- ══════════════════════════════════════════
+       EXPERIENCE
+       
+       LOGO FILES — create an images/ folder and add:
+         images/logo-observatory.png   → European Observatory
+         images/logo-tu-berlin.png     → TU Berlin (used for both TU roles)
+         images/logo-doctor.png        → Generic medical (used for all doctor roles)
+  ══════════════════════════════════════════ -->
   <section id="experience" class="section-light">
     <div class="inner-page">
       <h2 class="section-title">Experience</h2>
       <p class="section-subtitle">Where I've worked and studied.</p>
 
+      <!-- ── WORK ── -->
       <div class="tl-group">
         <p class="tl-group-label">Work</p>
         <div class="tl-track">
 
+          <!-- Current role 1 -->
           <div class="tl-item tl-current">
             <div class="tl-card">
+              <div class="tl-logo-col">
+                <img src="images/logo-observatory.png" alt="Observatory logo" class="tl-logo"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="tl-logo-fallback" style="display:none;">🏛️</div>
+              </div>
               <div class="tl-date-col">
                 <p class="tl-date-range">Oct 2025<br>— Present</p>
                 <span class="tl-now-badge">● Now</span>
               </div>
-              <div>
+              <div class="tl-content-col">
                 <h4 class="tl-company">European Observatory on Health Systems and Policies</h4>
                 <p class="tl-role">Research Fellow</p>
+                <p class="tl-meta">Brussels / Remote</p>
                 <p class="tl-desc">[Add a short description of your responsibilities and contributions in this role.]</p>
               </div>
             </div>
           </div>
 
-          <div class="tl-item">
+          <!-- Current role 2 -->
+          <div class="tl-item tl-current">
             <div class="tl-card">
+              <div class="tl-logo-col">
+                <img src="images/logo-tu-berlin.png" alt="TU Berlin logo" class="tl-logo"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="tl-logo-fallback" style="display:none;">🎓</div>
+              </div>
               <div class="tl-date-col">
-                <p class="tl-date-range">Sep 2024<br>— Oct 2025</p>
+                <p class="tl-date-range">Oct 2025<br>— Present</p>
+                <span class="tl-now-badge">● Now</span>
               </div>
-              <div>
-                <h4 class="tl-company">Technische Universität Berlin</h4>
-                <p class="tl-role">Student Assistant · Health Care Management Dept.</p>
+              <div class="tl-content-col">
+                <h4 class="tl-company">TU Berlin — Dept. of Health Care Management</h4>
+                <p class="tl-role">Research Fellow</p>
+                <p class="tl-meta">Berlin, Germany · Hybrid</p>
                 <p class="tl-desc">[Add a short description of your responsibilities and contributions in this role.]</p>
               </div>
             </div>
           </div>
 
+          <!-- Student Assistant -->
           <div class="tl-item">
             <div class="tl-card">
+              <div class="tl-logo-col">
+                <img src="images/logo-tu-berlin.png" alt="TU Berlin logo" class="tl-logo"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="tl-logo-fallback" style="display:none;">🎓</div>
+              </div>
+              <div class="tl-date-col">
+                <p class="tl-date-range">Sep 2024<br>— Sep 2025</p>
+              </div>
+              <div class="tl-content-col">
+                <h4 class="tl-company">Technische Universität Berlin</h4>
+                <p class="tl-role">Student Assistant</p>
+                <p class="tl-meta">Berlin, Germany · Hybrid</p>
+                <p class="tl-desc">[Add a short description of your responsibilities and contributions in this role.]</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Self-employed Doctor -->
+          <div class="tl-item">
+            <div class="tl-card">
+              <div class="tl-logo-col">
+                <img src="images/logo-doctor.png" alt="Medical logo" class="tl-logo"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="tl-logo-fallback" style="display:none;">🩺</div>
+              </div>
               <div class="tl-date-col">
                 <p class="tl-date-range">Mar 2023<br>— Sep 2023</p>
               </div>
-              <div>
+              <div class="tl-content-col">
                 <h4 class="tl-company">Private Practice</h4>
-                <p class="tl-role">Medical Doctor · Mauritius</p>
+                <p class="tl-role">Medical Doctor · Self-employed</p>
+                <p class="tl-meta">Mauritius · On-site</p>
                 <p class="tl-desc">[Add a short description of your responsibilities and contributions in this role.]</p>
               </div>
             </div>
           </div>
 
+          <!-- Ministry Doctor -->
           <div class="tl-item">
             <div class="tl-card">
+              <div class="tl-logo-col">
+                <img src="images/logo-doctor.png" alt="Medical logo" class="tl-logo"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="tl-logo-fallback" style="display:none;">🩺</div>
+              </div>
               <div class="tl-date-col">
                 <p class="tl-date-range">Feb 2022<br>— Feb 2023</p>
               </div>
-              <div>
+              <div class="tl-content-col">
                 <h4 class="tl-company">Ministry of Health and Wellness</h4>
-                <p class="tl-role">Medical Doctor · Mauritius</p>
+                <p class="tl-role">Medical Doctor · Full-time</p>
+                <p class="tl-meta">Mauritius · On-site</p>
                 <p class="tl-desc">[Add a short description of your responsibilities and contributions in this role.]</p>
               </div>
             </div>
           </div>
 
+          <!-- Intern JNH -->
           <div class="tl-item">
             <div class="tl-card">
+              <div class="tl-logo-col">
+                <img src="images/logo-doctor.png" alt="Medical logo" class="tl-logo"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="tl-logo-fallback" style="display:none;">🩺</div>
+              </div>
               <div class="tl-date-col">
                 <p class="tl-date-range">Oct 2019<br>— May 2021</p>
               </div>
-              <div>
-                <h4 class="tl-company">Ministry of Health and Wellness</h4>
-                <p class="tl-role">Medical Intern · Mauritius</p>
+              <div class="tl-content-col">
+                <h4 class="tl-company">Jawaharlal Nehru Hospital</h4>
+                <p class="tl-role">Medical Intern</p>
+                <p class="tl-meta">Rose Belle, Mauritius</p>
+                <p class="tl-desc">[Add a short description of your responsibilities and contributions in this role.]</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Intern China -->
+          <div class="tl-item">
+            <div class="tl-card">
+              <div class="tl-logo-col">
+                <img src="images/logo-doctor.png" alt="Medical logo" class="tl-logo"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="tl-logo-fallback" style="display:none;">🩺</div>
+              </div>
+              <div class="tl-date-col">
+                <p class="tl-date-range">Jun 2016<br>— Jun 2017</p>
+              </div>
+              <div class="tl-content-col">
+                <h4 class="tl-company">Panyu Central Hospital</h4>
+                <p class="tl-role">Medical Intern</p>
+                <p class="tl-meta">China</p>
                 <p class="tl-desc">[Add a short description of your responsibilities and contributions in this role.]</p>
               </div>
             </div>
@@ -785,6 +774,12 @@
         </div>
       </div>
 
+      <!-- ── EDUCATION ──
+           LOGO FILES needed:
+             images/logo-charite.png      → Charité
+             images/logo-utm.png          → University of Technology, Mauritius
+             images/logo-smu.png          → Southern Medical University
+      -->
       <div class="tl-group">
         <p class="tl-group-label">Education</p>
         <p class="tl-group-note">🩺 I learned a lot, but the real learning happens in the operation theatre!</p>
@@ -792,12 +787,18 @@
 
           <div class="tl-item">
             <div class="tl-card">
+              <div class="tl-logo-col">
+                <img src="images/logo-charite.png" alt="Charité logo" class="tl-logo"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="tl-logo-fallback" style="display:none;">🎓</div>
+              </div>
               <div class="tl-date-col">
                 <p class="tl-date-range">Oct 2023<br>— Apr 2025</p>
               </div>
-              <div>
+              <div class="tl-content-col">
                 <h4 class="tl-company">Charité – Universitätsmedizin Berlin</h4>
                 <p class="tl-role">M.S. Epidemiology</p>
+                <p class="tl-meta">Berlin, Germany</p>
                 <p class="tl-desc">[Add relevant coursework, thesis topic, or key achievements.]</p>
               </div>
             </div>
@@ -805,12 +806,18 @@
 
           <div class="tl-item">
             <div class="tl-card">
+              <div class="tl-logo-col">
+                <img src="images/logo-utm.png" alt="UTM logo" class="tl-logo"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="tl-logo-fallback" style="display:none;">🎓</div>
+              </div>
               <div class="tl-date-col">
                 <p class="tl-date-range">Oct 2021<br>— May 2024</p>
               </div>
-              <div>
+              <div class="tl-content-col">
                 <h4 class="tl-company">University of Technology, Mauritius</h4>
                 <p class="tl-role">M.S. Health Services Management</p>
+                <p class="tl-meta">Mauritius</p>
                 <p class="tl-desc">[Add relevant coursework, thesis topic, or key achievements.]</p>
               </div>
             </div>
@@ -818,12 +825,18 @@
 
           <div class="tl-item">
             <div class="tl-card">
+              <div class="tl-logo-col">
+                <img src="images/logo-smu.png" alt="SMU logo" class="tl-logo"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="tl-logo-fallback" style="display:none;">🎓</div>
+              </div>
               <div class="tl-date-col">
                 <p class="tl-date-range">Oct 2011<br>— Jun 2017</p>
               </div>
-              <div>
+              <div class="tl-content-col">
                 <h4 class="tl-company">Southern Medical University</h4>
-                <p class="tl-role">MBBS · People's Republic of China</p>
+                <p class="tl-role">MBBS</p>
+                <p class="tl-meta">People's Republic of China</p>
                 <p class="tl-desc">[Add relevant coursework, thesis topic, or key achievements.]</p>
               </div>
             </div>
@@ -844,7 +857,6 @@
       <h2 class="section-title">Skills</h2>
       <p class="section-subtitle">Tools, technologies, and areas of expertise.</p>
 
-      <!-- RESEARCH -->
       <div class="skills-group">
         <div class="skills-group-header">
           <span class="skills-group-icon">🔬</span>
@@ -863,7 +875,6 @@
         </div>
       </div>
 
-      <!-- TECH STACK -->
       <div class="skills-group">
         <div class="skills-group-header">
           <span class="skills-group-icon">💻</span>
@@ -881,7 +892,6 @@
         </div>
       </div>
 
-      <!-- TOOLS -->
       <div class="skills-group">
         <div class="skills-group-header">
           <span class="skills-group-icon">🛠️</span>
@@ -898,7 +908,6 @@
         </div>
       </div>
 
-      <!-- LANGUAGES -->
       <div class="skills-group">
         <div class="skills-group-header">
           <span class="skills-group-icon">🌐</span>
@@ -911,23 +920,22 @@
           <span class="skill-pill lang">[Add others]</span>
         </div>
       </div>
-
     </div>
   </section>
 
   <div class="section-divider"></div>
 
-  <!-- CONTACT -->
+  <!-- ══════════════════════════════════════════
+       CONTACT
+  ══════════════════════════════════════════ -->
   <section id="contact" class="section-light">
     <div class="inner-page">
       <h2 class="section-title">Contact</h2>
       <p class="section-subtitle">Let's connect — I'd love to hear from you.</p>
-
       <div class="contact-intro">
         <h3>Let's Build Something</h3>
         <p>Have a project in mind? I'm always open to discussing new opportunities.</p>
       </div>
-
       <div class="contact-grid">
         <a href="https://www.linkedin.com/in/divya-ramroop/" target="_blank" class="contact-card">
           <div class="icon">💼</div>
@@ -955,12 +963,9 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
-
   <script>
-    /* ── Active nav on scroll ── */
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
-
     const navObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -970,9 +975,7 @@
         }
       });
     }, { rootMargin: '-50% 0px -50% 0px' });
-
     sections.forEach(s => navObserver.observe(s));
-
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
         const navMenu = document.getElementById('navbarNav');
@@ -980,17 +983,12 @@
       });
     });
 
-    /* ── Timeline: grow line ── */
     const tracks = document.querySelectorAll('.tl-track');
     const lineObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('tl-line-grow');
-      });
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('tl-line-grow'); });
     }, { threshold: 0.05 });
-
     tracks.forEach(t => lineObserver.observe(t));
 
-    /* ── Timeline: staggered reveal ── */
     const tlItems = document.querySelectorAll('.tl-item');
     const itemObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1003,7 +1001,6 @@
         }
       });
     }, { threshold: 0.15 });
-
     tlItems.forEach(item => itemObserver.observe(item));
   </script>
 
