@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Divya Ramroop | Portfolio</title>
 
-  <!-- Bootstrap 4 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
@@ -21,13 +19,13 @@
       --border: #e5e3e0;
     }
 
+    html { scroll-behavior: smooth; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--light-bg);
       color: var(--text);
-      min-height: 100vh;
     }
 
     /* ── NAVBAR ── */
@@ -56,7 +54,6 @@
       padding: 6px 14px !important;
       border-radius: 8px;
       transition: all 0.2s;
-      cursor: pointer;
     }
 
     .nav-link:hover,
@@ -65,84 +62,76 @@
       background: #f0f0f8;
     }
 
-    .nav-link.active {
-      font-weight: 600;
-    }
+    .nav-link.active { font-weight: 600; }
 
-    /* ── PAGE SECTIONS (only one visible at a time) ── */
-    .page { display: none; animation: fadeIn 0.35s ease; }
-    .page.active { display: block; }
+    /* ── SECTIONS ── */
+    section { scroll-margin-top: 72px; }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── HERO (Home) ── */
-    .hero {
+    /* ── HOME BIO ── */
+    .home-bio-wrap {
+      background: linear-gradient(160deg, #f8f7f4 60%, #eae8f5 100%);
+      padding: 90px 24px 80px;
       min-height: calc(100vh - 72px);
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-      padding: 60px 20px;
-      background: linear-gradient(160deg, #f8f7f4 60%, #eae8f5 100%);
     }
 
-    .hero-avatar {
-      width: 140px;
-      height: 140px;
+    .home-bio-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 48px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .home-avatar-placeholder {
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid white;
-      box-shadow: 0 8px 30px rgba(45,45,107,0.15);
-      background: #ddd;
-      margin-bottom: 28px;
+      background: linear-gradient(135deg, var(--primary), #5a5aaa);
+      color: white;
+      font-family: 'DM Serif Display', serif;
+      font-size: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 30px rgba(45,45,107,0.2);
     }
 
-    .hero h1 {
+    .home-name {
       font-family: 'DM Serif Display', serif;
-      font-size: 48px;
+      font-size: 42px;
       color: var(--primary);
       line-height: 1.1;
-      margin-bottom: 12px;
+      margin-bottom: 6px;
     }
 
-    .hero .tagline {
-      font-size: 18px;
-      color: var(--muted);
-      max-width: 480px;
-      margin-bottom: 32px;
-    }
-
-    .hero-cta {
-      display: inline-block;
-      background: var(--accent);
-      color: white;
-      font-weight: 600;
+    .home-role {
       font-size: 15px;
-      padding: 12px 30px;
-      border-radius: 50px;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.2s;
-      cursor: pointer;
-      border: none;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      margin-bottom: 16px;
     }
 
-    .hero-cta:hover {
-      background: #c9432f;
-      transform: translateY(-2px);
-      color: white;
-      text-decoration: none;
+    .home-bio-text {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      max-width: 540px;
     }
 
     /* ── INNER PAGES ── */
     .inner-page {
       max-width: 860px;
       margin: 0 auto;
-      padding: 60px 24px 80px;
+      padding: 80px 24px 80px;
     }
+
+    .section-light { background: var(--light-bg); }
+    .section-white { background: #ffffff; }
 
     .section-title {
       font-family: 'DM Serif Display', serif;
@@ -208,38 +197,131 @@
 
     .card-link:hover { text-decoration: underline; color: var(--accent); }
 
-    /* ── EXPERIENCE ── */
-    .exp-block {
-      border-left: 3px solid var(--primary);
-      padding-left: 20px;
-      margin-bottom: 32px;
+    /* ── STATUS BADGE ── */
+    .status-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      letter-spacing: 0.3px;
     }
 
-    .exp-block h4 {
-      font-weight: 600;
-      font-size: 17px;
-      color: var(--text);
-    }
+    .status-active { background: #dcfce7; color: #16a34a; }
 
-    .exp-block .exp-meta {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .exp-block ul {
-      padding-left: 18px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .exp-block ul li { margin-bottom: 4px; }
-
-    .exp-label {
+    /* ── TIMELINE ── */
+    .timeline-label {
       font-family: 'DM Serif Display', serif;
       font-size: 22px;
       color: var(--primary);
-      margin: 36px 0 18px;
+      margin: 48px 0 28px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #eae8f5;
+    }
+
+    .timeline-label:first-child { margin-top: 0; }
+
+    .timeline {
+      position: relative;
+      padding-left: 36px;
+    }
+
+    /* Vertical line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary), #a0a0cc);
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 36px;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    /* Circle dot */
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -32px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 3px solid var(--primary);
+      z-index: 1;
+    }
+
+    /* Active/present dot — filled */
+    .timeline-item.active-role::before {
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(232, 93, 74, 0.15);
+    }
+
+    .timeline-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 22px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .timeline-card:hover {
+      box-shadow: 0 6px 24px rgba(45,45,107,0.09);
+      transform: translateY(-2px);
+    }
+
+    .timeline-card h4 {
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .timeline-card .tl-org {
+      font-size: 14px;
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .timeline-card .tl-date {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .tl-date-dot {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--muted);
+    }
+
+    .tl-present-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+      background: #dcfce7;
+      color: #16a34a;
+      margin-left: 8px;
+      letter-spacing: 0.3px;
+      vertical-align: middle;
     }
 
     /* ── ABOUT ── */
@@ -267,252 +349,8 @@
       margin-bottom: 14px;
     }
 
-    /* ── CONTACT ── */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    .contact-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
-      text-align: center;
-    }
-
-    .contact-card .icon {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-
-    .contact-card h5 {
-      font-weight: 600;
-      font-size: 14px;
-      color: var(--primary);
-      margin-bottom: 6px;
-    }
-
-    .contact-card a {
-      color: var(--muted);
-      font-size: 14px;
-      text-decoration: none;
-    }
-
-    .contact-card a:hover { color: var(--accent); }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--primary);
-      color: rgba(255,255,255,0.6);
-      text-align: center;
-      padding: 22px;
-      font-size: 13px;
-    }
-
-    /* ── HOME BIO ── */
-    .home-bio-wrap {
-      background: linear-gradient(160deg, #f8f7f4 60%, #eae8f5 100%);
-      padding: 70px 24px 60px;
-    }
-
-    .home-bio-inner {
-      max-width: 860px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 48px;
-      align-items: center;
-    }
-
-    .home-avatar-placeholder {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), #5a5aaa);
-      color: white;
-      font-family: 'DM Serif Display', serif;
-      font-size: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 30px rgba(45,45,107,0.2);
-      /* swap for an <img> once you have a photo */
-    }
-
-    .home-name {
-      font-family: 'DM Serif Display', serif;
-      font-size: 42px;
-      color: var(--primary);
-      line-height: 1.1;
-      margin-bottom: 6px;
-    }
-
-    .home-role {
-      font-size: 15px;
-      color: var(--accent);
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      margin-bottom: 16px;
-    }
-
-    .home-bio-text {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.8;
-      max-width: 540px;
-      margin-bottom: 28px;
-    }
-
-    .home-bio-links { display: flex; gap: 12px; flex-wrap: wrap; }
-
-    .bio-btn {
-      display: inline-block;
-      background: var(--accent);
-      color: white;
-      font-weight: 600;
-      font-size: 14px;
-      padding: 10px 24px;
-      border-radius: 50px;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.2s;
-    }
-
-    .bio-btn:hover { background: #c9432f; transform: translateY(-2px); color: white; text-decoration: none; }
-
-    .bio-btn-outline {
-      background: transparent;
-      color: var(--primary);
-      border: 2px solid var(--primary);
-    }
-
-    .bio-btn-outline:hover { background: var(--primary); color: white; }
-
-    /* ── HOME SECTIONS ── */
-    .home-section-wrap {
-      padding: 52px 24px;
-      background: var(--light-bg);
-    }
-
-    .home-section-alt { background: white; }
-
-    .home-section-inner {
-      max-width: 860px;
-      margin: 0 auto;
-    }
-
-    .home-section-label {
-      font-family: 'DM Serif Display', serif;
-      font-size: 26px;
-      color: var(--primary);
-      margin-bottom: 28px;
-    }
-
-    /* Ongoing projects */
-    .ongoing-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .ongoing-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-
-    .ongoing-card:hover { box-shadow: 0 8px 28px rgba(45,45,107,0.09); transform: translateY(-2px); }
-
-    .ongoing-dot {
-      width: 10px;
-      height: 10px;
-      min-width: 10px;
-      border-radius: 50%;
-      background: #22c55e;
-      margin-top: 6px;
-      box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
-    }
-
-    .ongoing-card h4 {
-      font-weight: 600;
-      font-size: 15px;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-
-    .ongoing-card p {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    /* Highlight work */
-    .highlight-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .highlight-card {
-      background: var(--light-bg);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px;
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-
-    .highlight-card:hover { box-shadow: 0 8px 28px rgba(45,45,107,0.09); transform: translateY(-2px); }
-
-    .highlight-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 32px;
-      color: var(--primary);
-      opacity: 0.15;
-      line-height: 1;
-      margin-bottom: 10px;
-    }
-
-    .highlight-card h4 {
-      font-weight: 600;
-      font-size: 16px;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-
-    .highlight-card p {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-      margin-bottom: 14px;
-    }
-
-    /* Status badge */
-    .status-badge {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 3px 10px;
-      border-radius: 20px;
-      margin-bottom: 10px;
-      letter-spacing: 0.3px;
-    }
-
-    .status-active {
-      background: #dcfce7;
-      color: #16a34a;
-    }
-
-    /* ── SKILLS PAGE ── */
-    .skills-group {
-      margin-bottom: 36px;
-    }
+    /* ── SKILLS ── */
+    .skills-group { margin-bottom: 36px; }
 
     .skills-group-title {
       font-weight: 600;
@@ -537,25 +375,80 @@
       transition: background 0.2s, border-color 0.2s;
     }
 
-    .skill-pill:hover {
-      background: #eae8f5;
-      border-color: var(--primary);
+    .skill-pill:hover { background: #eae8f5; border-color: var(--primary); }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 24px;
+      text-align: center;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .contact-card:hover {
+      box-shadow: 0 6px 24px rgba(45,45,107,0.09);
+      transform: translateY(-2px);
+    }
+
+    .contact-card .icon {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .contact-card h5 {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .contact-card a {
+      color: var(--muted);
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .contact-card a:hover { color: var(--accent); }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--primary);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 22px;
+      font-size: 13px;
     }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 700px) {
       .home-bio-inner { grid-template-columns: 1fr; text-align: center; }
       .home-avatar-placeholder { margin: 0 auto; }
-      .home-bio-links { justify-content: center; }
-      .ongoing-grid, .highlight-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .timeline { padding-left: 28px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ── BOOTSTRAP NAVBAR ── -->
+  <!-- ── NAVBAR ── -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#" onclick="showPage('home')">Divya Ramroop</a>
+    <a class="navbar-brand" href="#home">Divya Ramroop</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -564,37 +457,21 @@
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link active" id="nav-home" onclick="showPage('home')">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="nav-projects" onclick="showPage('projects')">Projects</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="nav-publications" onclick="showPage('publications')">Publications</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="nav-experience" onclick="showPage('experience')">Experience</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="nav-skills" onclick="showPage('skills')">Skills</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="nav-about" onclick="showPage('about')">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="nav-contact" onclick="showPage('contact')">Contact</a>
-        </li>
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- ══════════════════════════════════════════ -->
-  <!-- HOME PAGE -->
+  <!-- HOME -->
   <!-- ══════════════════════════════════════════ -->
-  <div id="page-home" class="page active">
-
-    <!-- Bio strip -->
+  <section id="home" class="section-light">
     <div class="home-bio-wrap">
       <div class="home-bio-inner">
         <div class="home-avatar-col">
@@ -602,63 +479,19 @@
         </div>
         <div class="home-bio-col">
           <h1 class="home-name">Divya Ramroop</h1>
-          <p class="home-role">[Your tagline — e.g. Researcher · AI &amp; Mental Health · TU Berlin]</p>
+          <p class="home-role">[Your tagline — e.g. Researcher · AI &amp; Health Systems · TU Berlin]</p>
           <p class="home-bio-text">[Write your short bio here. A couple of sentences about who you are, what you work on, and what drives you. Keep it warm and human.]</p>
-          </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Ongoing Projects -->
-    <div class="home-section-wrap">
-      <div class="home-section-inner">
-        <p class="home-section-label">Ongoing Projects</p>
-        <div class="ongoing-grid">
-          <div class="ongoing-card">
-            <span class="ongoing-dot"></span>
-            <div>
-              <h4>Mental Illness Chatbot</h4>
-              <p>An AI-powered conversational tool designed to support individuals experiencing mental illness — focused on empathy, safety, and accessibility.</p>
-            </div>
-          </div>
-          <div class="ongoing-card">
-            <span class="ongoing-dot"></span>
-            <div>
-              <h4>Safe Use of AI</h4>
-              <p>A study examining frameworks, risks, and best practices around responsible and safe deployment of AI systems in real-world contexts.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Highlight Work -->
-    <div class="home-section-wrap home-section-alt">
-      <div class="home-section-inner">
-        <p class="home-section-label">Highlight Work</p>
-        <div class="highlight-grid">
-          <div class="highlight-card">
-            <div class="highlight-num">01</div>
-            <h4>[Highlight title]</h4>
-            <p>[Short description of this work — a paper, project, or achievement worth spotlighting.]</p>
-            <a href="#" class="card-link">Learn more →</a>
-          </div>
-          <div class="highlight-card">
-            <div class="highlight-num">02</div>
-            <h4>[Highlight title]</h4>
-            <p>[Short description of this work — a paper, project, or achievement worth spotlighting.]</p>
-            <a href="#" class="card-link">Learn more →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
+  <div class="section-divider"></div>
 
   <!-- ══════════════════════════════════════════ -->
-  <!-- PROJECTS PAGE -->
+  <!-- PROJECTS -->
   <!-- ══════════════════════════════════════════ -->
-  <div id="page-projects" class="page">
+  <section id="projects" class="section-white">
     <div class="inner-page">
       <h2 class="section-title">Projects</h2>
       <p class="section-subtitle">Things I'm building and researching.</p>
@@ -693,12 +526,14 @@
         <a href="#" class="card-link">View Project →</a>
       </div>
     </div>
-  </div>
+  </section>
+
+  <div class="section-divider"></div>
 
   <!-- ══════════════════════════════════════════ -->
-  <!-- PUBLICATIONS PAGE -->
+  <!-- PUBLICATIONS -->
   <!-- ══════════════════════════════════════════ -->
-  <div id="page-publications" class="page">
+  <section id="publications" class="section-light">
     <div class="inner-page">
       <h2 class="section-title">Publications</h2>
       <p class="section-subtitle">Research papers, articles, and writing.</p>
@@ -717,53 +552,127 @@
         <a href="#" class="card-link">Read more →</a>
       </div>
     </div>
-  </div>
+  </section>
+
+  <div class="section-divider"></div>
 
   <!-- ══════════════════════════════════════════ -->
-  <!-- EXPERIENCE PAGE -->
+  <!-- EXPERIENCE -->
   <!-- ══════════════════════════════════════════ -->
-  <div id="page-experience" class="page">
+  <section id="experience" class="section-white">
     <div class="inner-page">
       <h2 class="section-title">Experience</h2>
       <p class="section-subtitle">Where I've worked and studied.</p>
 
-      <div class="exp-label">Work</div>
+      <!-- ── WORK TIMELINE ── -->
+      <div class="timeline-label">Work</div>
+      <div class="timeline">
 
-      <div class="exp-block">
-        <h4>[Job Title] · [Company Name]</h4>
-        <p class="exp-meta">[Start Date] – [End Date]</p>
-        <ul>
-          <li>[Key achievement or responsibility]</li>
-          <li>[Key achievement or responsibility]</li>
-          <li>[Key achievement or responsibility]</li>
-        </ul>
+        <div class="timeline-item active-role">
+          <div class="timeline-card">
+            <h4>Research Fellow</h4>
+            <p class="tl-org">European Observatory on Health Systems and Policies</p>
+            <span class="tl-date">
+              <span class="tl-date-dot"></span>
+              Oct 2025 – Present
+              <span class="tl-present-badge">● Now</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <h4>Student Assistant</h4>
+            <p class="tl-org">Health Care Management Department · Technische Universität Berlin</p>
+            <span class="tl-date">
+              <span class="tl-date-dot"></span>
+              Sep 2024 – Oct 2025
+            </span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <h4>Medical Doctor</h4>
+            <p class="tl-org">Private Practice, Mauritius</p>
+            <span class="tl-date">
+              <span class="tl-date-dot"></span>
+              Mar 2023 – Sep 2023
+            </span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <h4>Medical Doctor</h4>
+            <p class="tl-org">Ministry of Health and Wellness, Mauritius</p>
+            <span class="tl-date">
+              <span class="tl-date-dot"></span>
+              Feb 2022 – Feb 2023
+            </span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <h4>Medical Intern</h4>
+            <p class="tl-org">Ministry of Health and Wellness, Mauritius</p>
+            <span class="tl-date">
+              <span class="tl-date-dot"></span>
+              Oct 2019 – May 2021
+            </span>
+          </div>
+        </div>
+
       </div>
 
-      <div class="exp-block">
-        <h4>[Job Title] · [Company Name]</h4>
-        <p class="exp-meta">[Start Date] – [End Date]</p>
-        <ul>
-          <li>[Key achievement or responsibility]</li>
-          <li>[Key achievement or responsibility]</li>
-        </ul>
-      </div>
+      <!-- ── EDUCATION TIMELINE ── -->
+      <div class="timeline-label">Education</div>
+      <div class="timeline">
 
-      <div class="exp-label">Education</div>
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <h4>M.S. Epidemiology</h4>
+            <p class="tl-org">Charité – Universitätsmedizin Berlin</p>
+            <span class="tl-date">
+              <span class="tl-date-dot"></span>
+              Oct 2023 – Apr 2025
+            </span>
+          </div>
+        </div>
 
-      <div class="exp-block">
-        <h4>[Degree] · [University Name]</h4>
-        <p class="exp-meta">[Start Year] – [End Year]</p>
-        <ul>
-          <li>[Relevant coursework, thesis, or achievement]</li>
-        </ul>
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <h4>M.S. Health Services Management</h4>
+            <p class="tl-org">University of Technology, Mauritius</p>
+            <span class="tl-date">
+              <span class="tl-date-dot"></span>
+              Oct 2021 – May 2024
+            </span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <h4>Bachelor of Medicine and Bachelor of Surgery (MBBS)</h4>
+            <p class="tl-org">Southern Medical University, People's Republic of China</p>
+            <span class="tl-date">
+              <span class="tl-date-dot"></span>
+              Oct 2011 – Jun 2017
+            </span>
+          </div>
+        </div>
+
       </div>
     </div>
-  </div>
+  </section>
+
+  <div class="section-divider"></div>
 
   <!-- ══════════════════════════════════════════ -->
-  <!-- SKILLS PAGE -->
+  <!-- SKILLS -->
   <!-- ══════════════════════════════════════════ -->
-  <div id="page-skills" class="page">
+  <section id="skills" class="section-light">
     <div class="inner-page">
       <h2 class="section-title">Skills</h2>
       <p class="section-subtitle">Tools, technologies, and areas of expertise.</p>
@@ -805,11 +714,14 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <div class="section-divider"></div>
 
   <!-- ══════════════════════════════════════════ -->
+  <!-- ABOUT -->
   <!-- ══════════════════════════════════════════ -->
-  <div id="page-about" class="page">
+  <section id="about" class="section-white">
     <div class="inner-page">
       <h2 class="section-title">About Me</h2>
       <p class="section-subtitle">A little more about who I am.</p>
@@ -823,12 +735,14 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <div class="section-divider"></div>
 
   <!-- ══════════════════════════════════════════ -->
-  <!-- CONTACT PAGE -->
+  <!-- CONTACT -->
   <!-- ══════════════════════════════════════════ -->
-  <div id="page-contact" class="page">
+  <section id="contact" class="section-light">
     <div class="inner-page">
       <h2 class="section-title">Contact</h2>
       <p class="section-subtitle">Let's connect — I'd love to hear from you.</p>
@@ -851,7 +765,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- FOOTER -->
   <footer>
@@ -863,30 +777,29 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    const pages = ['home', 'projects', 'publications', 'experience', 'skills', 'about', 'contact'];
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
 
-    function showPage(name) {
-      // Hide all pages
-      pages.forEach(p => {
-        document.getElementById('page-' + p).classList.remove('active');
-        const navEl = document.getElementById('nav-' + p);
-        if (navEl) navEl.classList.remove('active');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
       });
+    }, { rootMargin: '-50% 0px -50% 0px' });
 
-      // Show selected page
-      document.getElementById('page-' + name).classList.add('active');
-      const activeNav = document.getElementById('nav-' + name);
-      if (activeNav) activeNav.classList.add('active');
+    sections.forEach(section => observer.observe(section));
 
-      // Scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      // Close mobile menu
-      const navMenu = document.getElementById('navbarNav');
-      if (navMenu.classList.contains('show')) {
-        $('#navbarNav').collapse('hide');
-      }
-    }
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        const navMenu = document.getElementById('navbarNav');
+        if (navMenu.classList.contains('show')) {
+          $('#navbarNav').collapse('hide');
+        }
+      });
+    });
   </script>
 
 </body>
