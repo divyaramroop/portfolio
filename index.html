@@ -112,15 +112,55 @@
       color: var(--accent);
       font-weight: 600;
       letter-spacing: 0.3px;
-      margin-bottom: 16px;
+      margin-bottom: 10px;
     }
 
-    .home-bio-text {
+    .home-affiliation {
+      font-size: 14px;
       color: var(--muted);
-      font-size: 15px;
-      line-height: 1.8;
-      max-width: 540px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      line-height: 1.5;
     }
+
+    .home-location {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .home-interests {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .home-interests-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .interest-tag {
+      display: inline-block;
+      background: #eae8f5;
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid #d4d1ed;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .interest-tag:hover { background: #dddaf5; border-color: var(--primary); }
 
     /* ── INNER PAGES ── */
     .inner-page {
@@ -147,13 +187,18 @@
       padding-bottom: 20px;
     }
 
-    /* ══════════════════════════════════════
-       ABOUT — full-width bio, no image
-    ══════════════════════════════════════ */
-    .about-intro {
-      max-width: 700px;
-      margin-bottom: 40px;
+    .section-note {
+      font-size: 14px;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 32px;
+      margin-top: -20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
     }
+
+    /* ── ABOUT ── */
+    .about-intro { max-width: 700px; margin-bottom: 40px; }
 
     .about-intro p {
       font-size: 16px;
@@ -164,7 +209,6 @@
 
     .about-intro p:last-child { margin-bottom: 0; }
 
-    /* Highlighted pull-quote */
     .about-pullquote {
       border-left: 4px solid var(--accent);
       padding: 14px 24px;
@@ -181,7 +225,6 @@
       margin: 0;
     }
 
-    /* Quick-facts strip */
     .about-facts {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -197,11 +240,7 @@
       transition: box-shadow 0.2s, transform 0.2s;
     }
 
-    .about-fact:hover {
-      box-shadow: 0 6px 20px rgba(45,45,107,0.08);
-      transform: translateY(-2px);
-    }
-
+    .about-fact:hover { box-shadow: 0 6px 20px rgba(45,45,107,0.08); transform: translateY(-2px); }
     .about-fact-icon { font-size: 22px; margin-bottom: 8px; }
 
     .about-fact-label {
@@ -213,11 +252,7 @@
       margin-bottom: 4px;
     }
 
-    .about-fact-value {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--primary);
-    }
+    .about-fact-value { font-size: 14px; font-weight: 600; color: var(--primary); }
 
     /* ── 2-COLUMN CARD GRID ── */
     .cards-grid {
@@ -249,19 +284,8 @@
       line-height: 1.3;
     }
 
-    .project-card p {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.7;
-      flex: 1;
-    }
-
-    .pub-meta {
-      font-size: 12px;
-      color: var(--muted);
-      font-style: italic;
-    }
-
+    .project-card p { color: var(--muted); font-size: 13px; line-height: 1.7; flex: 1; }
+    .pub-meta { font-size: 12px; color: var(--muted); font-style: italic; }
     .tech-row { display: flex; flex-wrap: wrap; gap: 6px; }
 
     .tech-badge {
@@ -274,14 +298,7 @@
       border-radius: 20px;
     }
 
-    .card-link {
-      color: var(--accent);
-      font-weight: 600;
-      font-size: 13px;
-      text-decoration: none;
-      margin-top: auto;
-    }
-
+    .card-link { color: var(--accent); font-weight: 600; font-size: 13px; text-decoration: none; margin-top: auto; }
     .card-link:hover { text-decoration: underline; color: var(--accent); }
 
     .status-badge {
@@ -296,9 +313,7 @@
 
     .status-active { background: #dcfce7; color: #16a34a; }
 
-    /* ══════════════════════════════════════
-       TIMELINE
-    ══════════════════════════════════════ */
+    /* ── TIMELINE ── */
     .tl-group { margin-bottom: 52px; }
     .tl-group:last-child { margin-bottom: 0; }
 
@@ -308,9 +323,16 @@
       letter-spacing: 1.6px;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 28px;
+      margin-bottom: 12px;
       padding-bottom: 12px;
       border-bottom: 1px solid var(--border);
+    }
+
+    .tl-group-note {
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 24px;
     }
 
     .tl-track {
@@ -383,12 +405,7 @@
 
     .tl-date-col { padding-top: 2px; }
 
-    .tl-date-range {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--muted);
-      line-height: 1.6;
-    }
+    .tl-date-range { font-size: 12px; font-weight: 600; color: var(--muted); line-height: 1.6; }
 
     .tl-now-badge {
       display: inline-block;
@@ -402,37 +419,31 @@
       letter-spacing: 0.3px;
     }
 
-    .tl-company {
-      font-family: 'DM Serif Display', serif;
-      font-size: 17px;
-      color: var(--primary);
-      margin-bottom: 3px;
-      line-height: 1.25;
+    .tl-company { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--primary); margin-bottom: 3px; line-height: 1.25; }
+    .tl-role { font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 7px; }
+    .tl-desc { font-size: 13px; color: var(--muted); line-height: 1.75; }
+
+    /* ══════════════════════════════════════
+       SKILLS — 3 categories
+    ══════════════════════════════════════ */
+    .skills-group { margin-bottom: 40px; }
+    .skills-group:last-child { margin-bottom: 0; }
+
+    .skills-group-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
     }
 
-    .tl-role {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 7px;
-    }
-
-    .tl-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    /* ── SKILLS ── */
-    .skills-group { margin-bottom: 36px; }
+    .skills-group-icon { font-size: 18px; }
 
     .skills-group-title {
-      font-weight: 600;
+      font-weight: 700;
       font-size: 15px;
       color: var(--text);
-      margin-bottom: 14px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
     }
 
     .skills-pills { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -451,7 +462,27 @@
 
     .skill-pill:hover { background: #eae8f5; border-color: var(--primary); }
 
+    /* Language pills — slightly different tint */
+    .skill-pill.lang {
+      background: #fff4f2;
+      border-color: #f5c4be;
+      color: var(--accent);
+    }
+
+    .skill-pill.lang:hover { background: #ffe8e4; border-color: var(--accent); }
+
     /* ── CONTACT ── */
+    .contact-intro { margin-bottom: 36px; margin-top: -16px; }
+
+    .contact-intro h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 26px;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .contact-intro p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -465,11 +496,14 @@
       padding: 28px 24px;
       text-align: center;
       transition: box-shadow 0.2s, transform 0.2s;
+      text-decoration: none;
+      display: block;
     }
 
     .contact-card:hover {
       box-shadow: 0 6px 24px rgba(45,45,107,0.09);
       transform: translateY(-2px);
+      text-decoration: none;
     }
 
     .contact-card .icon { font-size: 30px; margin-bottom: 12px; }
@@ -481,16 +515,11 @@
       margin-bottom: 6px;
     }
 
-    .contact-card a { color: var(--muted); font-size: 14px; text-decoration: none; }
-    .contact-card a:hover { color: var(--accent); }
+    .contact-card span { color: var(--muted); font-size: 14px; }
+    .contact-card:hover span { color: var(--accent); }
 
     /* ── DIVIDER ── */
-    .section-divider {
-      height: 1px;
-      background: var(--border);
-      max-width: 900px;
-      margin: 0 auto;
-    }
+    .section-divider { height: 1px; background: var(--border); max-width: 900px; margin: 0 auto; }
 
     /* ── FOOTER ── */
     footer {
@@ -505,6 +534,8 @@
     @media (max-width: 700px) {
       .home-bio-inner { grid-template-columns: 1fr; text-align: center; }
       .home-avatar-placeholder { margin: 0 auto; }
+      .home-location { justify-content: center; }
+      .home-interests { justify-content: center; }
       .cards-grid { grid-template-columns: 1fr; }
       .tl-card { grid-template-columns: 1fr; gap: 4px; }
       .tl-track { padding-left: 32px; }
@@ -536,9 +567,7 @@
     </div>
   </nav>
 
-  <!-- ══════════════════════════════════════════
-       HOME
-  ══════════════════════════════════════════ -->
+  <!-- HOME -->
   <section id="home" class="section-light">
     <div class="home-bio-wrap">
       <div class="home-bio-inner">
@@ -547,8 +576,15 @@
         </div>
         <div class="home-bio-col">
           <h1 class="home-name">Divya Ramroop</h1>
-          <p class="home-role">[Your tagline — e.g. Researcher · AI &amp; Health Systems · TU Berlin]</p>
-          <p class="home-bio-text">[Write your short one or two line intro here — who you are and what you do.]</p>
+          <p class="home-role">Researcher · Health Policies · AI &amp; Health Systems · TU Berlin</p>
+          <p class="home-affiliation">Research Fellow at European Observatory on Health Systems and Policies &amp; Technische Universität Berlin</p>
+          <p class="home-location">📍 Berlin, Germany</p>
+          <div class="home-interests">
+            <span class="home-interests-label">Research Interests</span>
+            <span class="interest-tag">Cancer</span>
+            <span class="interest-tag">Digital Health</span>
+            <span class="interest-tag">AI in Healthcare</span>
+          </div>
         </div>
       </div>
     </div>
@@ -556,9 +592,7 @@
 
   <div class="section-divider"></div>
 
-  <!-- ══════════════════════════════════════════
-       ABOUT  — now second, full-width bio
-  ══════════════════════════════════════════ -->
+  <!-- ABOUT -->
   <section id="about" class="section-white">
     <div class="inner-page">
       <h2 class="section-title">About Me</h2>
@@ -566,17 +600,13 @@
 
       <div class="about-intro">
         <p>[Write a paragraph about your background — where you're from, your journey from medicine into health systems research and AI, and what drew you to these fields.]</p>
-
         <div class="about-pullquote">
           <p>[A one-line sentence that captures your mission or philosophy — something like "I believe AI should make healthcare more human, not less."]</p>
         </div>
-
         <p>[Write about your current work — what you're focused on right now, what questions you're trying to answer, and why they matter.]</p>
-
         <p>[Write about your interests, passions, or what you do outside of work — anything that shows the person behind the research.]</p>
       </div>
 
-      <!-- Quick-facts strip -->
       <div class="about-facts">
         <div class="about-fact">
           <div class="about-fact-icon">📍</div>
@@ -596,25 +626,22 @@
         <div class="about-fact">
           <div class="about-fact-icon">🌐</div>
           <div class="about-fact-label">Languages</div>
-          <div class="about-fact-value">[e.g. English · French · German]</div>
+          <div class="about-fact-value">English · French · [others]</div>
         </div>
       </div>
-
     </div>
   </section>
 
   <div class="section-divider"></div>
 
-  <!-- ══════════════════════════════════════════
-       PROJECTS
-  ══════════════════════════════════════════ -->
+  <!-- PROJECTS -->
   <section id="projects" class="section-light">
     <div class="inner-page">
       <h2 class="section-title">Projects</h2>
       <p class="section-subtitle">Things I'm building and researching.</p>
+      <p class="section-note">💡 A lot of ideas, but some are still under construction!</p>
 
       <div class="cards-grid">
-
         <div class="project-card">
           <span class="status-badge status-active">● Ongoing</span>
           <h3>Mental Illness Chatbot</h3>
@@ -647,23 +674,19 @@
           </div>
           <a href="#" class="card-link">View Project →</a>
         </div>
-
       </div>
     </div>
   </section>
 
   <div class="section-divider"></div>
 
-  <!-- ══════════════════════════════════════════
-       PUBLICATIONS
-  ══════════════════════════════════════════ -->
+  <!-- PUBLICATIONS -->
   <section id="publications" class="section-white">
     <div class="inner-page">
       <h2 class="section-title">Publications</h2>
       <p class="section-subtitle">Research papers, articles, and writing.</p>
 
       <div class="cards-grid">
-
         <div class="project-card">
           <h3>[Publication / Article Title]</h3>
           <p class="pub-meta">[Journal / Conference / Platform] · [Year]</p>
@@ -677,16 +700,13 @@
           <p>[Short summary of what this paper or article is about and its key contribution.]</p>
           <a href="#" class="card-link">Read more →</a>
         </div>
-
       </div>
     </div>
   </section>
 
   <div class="section-divider"></div>
 
-  <!-- ══════════════════════════════════════════
-       EXPERIENCE
-  ══════════════════════════════════════════ -->
+  <!-- EXPERIENCE -->
   <section id="experience" class="section-light">
     <div class="inner-page">
       <h2 class="section-title">Experience</h2>
@@ -767,6 +787,7 @@
 
       <div class="tl-group">
         <p class="tl-group-label">Education</p>
+        <p class="tl-group-note">🩺 I learned a lot, but the real learning happens in the operation theatre!</p>
         <div class="tl-track">
 
           <div class="tl-item">
@@ -823,70 +844,106 @@
       <h2 class="section-title">Skills</h2>
       <p class="section-subtitle">Tools, technologies, and areas of expertise.</p>
 
+      <!-- RESEARCH -->
       <div class="skills-group">
-        <h4 class="skills-group-title">Research &amp; Methods</h4>
+        <div class="skills-group-header">
+          <span class="skills-group-icon">🔬</span>
+          <h4 class="skills-group-title">Research</h4>
+        </div>
         <div class="skills-pills">
-          <span class="skill-pill">[Skill]</span>
-          <span class="skill-pill">[Skill]</span>
-          <span class="skill-pill">[Skill]</span>
-          <span class="skill-pill">[Skill]</span>
+          <span class="skill-pill">Qualitative Research</span>
+          <span class="skill-pill">Quantitative Research</span>
+          <span class="skill-pill">Systematic Literature Review</span>
+          <span class="skill-pill">Health Policy Research</span>
+          <span class="skill-pill">Data Synthesis</span>
+          <span class="skill-pill">Academic Report Writing</span>
+          <span class="skill-pill">Research Presentations</span>
+          <span class="skill-pill">International Data Analysis</span>
+          <span class="skill-pill">Study Design</span>
         </div>
       </div>
 
+      <!-- TECH STACK -->
       <div class="skills-group">
-        <h4 class="skills-group-title">Programming &amp; Tools</h4>
+        <div class="skills-group-header">
+          <span class="skills-group-icon">💻</span>
+          <h4 class="skills-group-title">Tech Stack</h4>
+        </div>
         <div class="skills-pills">
-          <span class="skill-pill">[Skill]</span>
-          <span class="skill-pill">[Skill]</span>
-          <span class="skill-pill">[Skill]</span>
-          <span class="skill-pill">[Skill]</span>
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">pandas</span>
+          <span class="skill-pill">numpy</span>
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">R</span>
+          <span class="skill-pill">SPSS</span>
+          <span class="skill-pill">Data Preprocessing</span>
+          <span class="skill-pill">Reproducible Workflows</span>
         </div>
       </div>
 
+      <!-- TOOLS -->
       <div class="skills-group">
-        <h4 class="skills-group-title">AI &amp; Machine Learning</h4>
+        <div class="skills-group-header">
+          <span class="skills-group-icon">🛠️</span>
+          <h4 class="skills-group-title">Tools</h4>
+        </div>
         <div class="skills-pills">
-          <span class="skill-pill">[Skill]</span>
-          <span class="skill-pill">[Skill]</span>
-          <span class="skill-pill">[Skill]</span>
+          <span class="skill-pill">Microsoft Excel (Advanced)</span>
+          <span class="skill-pill">Microsoft Word</span>
+          <span class="skill-pill">Microsoft PowerPoint</span>
+          <span class="skill-pill">Leadership &amp; Team Management</span>
+          <span class="skill-pill">Multidisciplinary Collaboration</span>
+          <span class="skill-pill">Problem-Solving</span>
+          <span class="skill-pill">Adaptability</span>
         </div>
       </div>
 
+      <!-- LANGUAGES -->
       <div class="skills-group">
-        <h4 class="skills-group-title">Languages</h4>
+        <div class="skills-group-header">
+          <span class="skills-group-icon">🌐</span>
+          <h4 class="skills-group-title">Languages</h4>
+        </div>
         <div class="skills-pills">
-          <span class="skill-pill">[Language — e.g. English (Native)]</span>
-          <span class="skill-pill">[Language]</span>
+          <span class="skill-pill lang">English (Fluent)</span>
+          <span class="skill-pill lang">French (Fluent)</span>
+          <span class="skill-pill lang">German (Learning)</span>
+          <span class="skill-pill lang">[Add others]</span>
         </div>
       </div>
+
     </div>
   </section>
 
   <div class="section-divider"></div>
 
-  <!-- ══════════════════════════════════════════
-       CONTACT
-  ══════════════════════════════════════════ -->
+  <!-- CONTACT -->
   <section id="contact" class="section-light">
     <div class="inner-page">
       <h2 class="section-title">Contact</h2>
       <p class="section-subtitle">Let's connect — I'd love to hear from you.</p>
+
+      <div class="contact-intro">
+        <h3>Let's Build Something</h3>
+        <p>Have a project in mind? I'm always open to discussing new opportunities.</p>
+      </div>
+
       <div class="contact-grid">
-        <div class="contact-card">
+        <a href="https://www.linkedin.com/in/divya-ramroop/" target="_blank" class="contact-card">
           <div class="icon">💼</div>
           <h5>LinkedIn</h5>
-          <a href="https://linkedin.com/in/divyaramroop" target="_blank">linkedin.com/in/divyaramroop</a>
-        </div>
-        <div class="contact-card">
+          <span>linkedin.com/in/divya-ramroop</span>
+        </a>
+        <a href="mailto:contactdramroop@gmail.com" class="contact-card">
           <div class="icon">✉️</div>
           <h5>Personal Email</h5>
-          <a href="mailto:[your-personal@email.com]">[your-personal@email.com]</a>
-        </div>
-        <div class="contact-card">
+          <span>contactdramroop@gmail.com</span>
+        </a>
+        <a href="mailto:divya.ramroop@tu-berlin.de" class="contact-card">
           <div class="icon">🏛️</div>
           <h5>Work Email</h5>
-          <a href="mailto:divya@tu-berlin.de">divya@tu-berlin.de</a>
-        </div>
+          <span>divya.ramroop@tu-berlin.de</span>
+        </a>
       </div>
     </div>
   </section>
@@ -933,7 +990,7 @@
 
     tracks.forEach(t => lineObserver.observe(t));
 
-    /* ── Timeline: staggered card reveal ── */
+    /* ── Timeline: staggered reveal ── */
     const tlItems = document.querySelectorAll('.tl-item');
     const itemObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
