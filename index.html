@@ -5,256 +5,552 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Divya Ramroop | Portfolio</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap 4 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --primary: #4f46e5;
-      --dark: #111827;
-      --gray: #6b7280;
-      --light: #f9fafb;
+      --primary: #2d2d6b;
+      --accent: #e85d4a;
+      --light-bg: #f8f7f4;
+      --card-bg: #ffffff;
+      --text: #1a1a2e;
+      --muted: #6b6b80;
+      --border: #e5e3e0;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--light);
-      color: var(--dark);
-      line-height: 1.6;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--light-bg);
+      color: var(--text);
+      min-height: 100vh;
     }
 
-    /* NAVBAR */
-    nav {
+    /* ── NAVBAR ── */
+    .navbar {
+      background: var(--card-bg) !important;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 40px;
       position: sticky;
       top: 0;
-      background: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 40px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       z-index: 1000;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
     }
 
-    nav h2 {
-      font-size: 18px;
+    .navbar-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: var(--primary) !important;
+      letter-spacing: -0.5px;
     }
 
-    nav a {
-      text-decoration: none;
-      color: var(--dark);
-      margin-left: 20px;
+    .nav-link {
       font-weight: 500;
-      transition: color 0.2s;
+      font-size: 15px;
+      color: var(--muted) !important;
+      margin: 0 4px;
+      padding: 6px 14px !important;
+      border-radius: 8px;
+      transition: all 0.2s;
+      cursor: pointer;
     }
 
-    nav a:hover {
-      color: var(--primary);
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--primary) !important;
+      background: #f0f0f8;
     }
 
-    /* HERO */
-    header {
+    .nav-link.active {
+      font-weight: 600;
+    }
+
+    /* ── PAGE SECTIONS (only one visible at a time) ── */
+    .page { display: none; animation: fadeIn 0.35s ease; }
+    .page.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── HERO (Home) ── */
+    .hero {
+      min-height: calc(100vh - 72px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
       text-align: center;
-      padding: 80px 20px;
-      background: linear-gradient(to bottom, #ffffff, #f3f4f6);
+      padding: 60px 20px;
+      background: linear-gradient(160deg, #f8f7f4 60%, #eae8f5 100%);
     }
 
-    header h1 {
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
-
-    header p {
-      color: var(--gray);
-      margin-bottom: 20px;
-    }
-
-    header img {
+    .hero-avatar {
       width: 140px;
       height: 140px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid white;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      border: 4px solid white;
+      box-shadow: 0 8px 30px rgba(45,45,107,0.15);
+      background: #ddd;
+      margin-bottom: 28px;
     }
 
-    /* SECTIONS */
-    section {
-      max-width: 900px;
-      margin: auto;
-      padding: 60px 20px;
-    }
-
-    h2 {
-      font-size: 26px;
-      margin-bottom: 20px;
-    }
-
-    p {
-      color: var(--gray);
-    }
-
-    /* CARDS */
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      margin-bottom: 20px;
-      transition: transform 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-    }
-
-    .card a {
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 48px;
       color: var(--primary);
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .hero .tagline {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 32px;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 12px 30px;
+      border-radius: 50px;
       text-decoration: none;
-      font-weight: 500;
+      transition: background 0.2s, transform 0.2s;
+      cursor: pointer;
+      border: none;
     }
 
-    /* LISTS */
-    ul {
-      margin-top: 10px;
-      padding-left: 20px;
-      color: var(--gray);
+    .hero-cta:hover {
+      background: #c9432f;
+      transform: translateY(-2px);
+      color: white;
+      text-decoration: none;
     }
 
-    /* CONTACT */
-    .contact p {
+    /* ── INNER PAGES ── */
+    .inner-page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 34px;
+      color: var(--primary);
       margin-bottom: 8px;
     }
 
-    /* FOOTER */
-    footer {
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+    }
+
+    /* ── CARDS ── */
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 22px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 8px 32px rgba(45,45,107,0.1);
+      transform: translateY(-3px);
+    }
+
+    .project-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tech-badge {
+      display: inline-block;
+      background: #eae8f5;
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-right: 6px;
+      margin-bottom: 12px;
+    }
+
+    .card-link {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .card-link:hover { text-decoration: underline; color: var(--accent); }
+
+    /* ── EXPERIENCE ── */
+    .exp-block {
+      border-left: 3px solid var(--primary);
+      padding-left: 20px;
+      margin-bottom: 32px;
+    }
+
+    .exp-block h4 {
+      font-weight: 600;
+      font-size: 17px;
+      color: var(--text);
+    }
+
+    .exp-block .exp-meta {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .exp-block ul {
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .exp-block ul li { margin-bottom: 4px; }
+
+    .exp-label {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: var(--primary);
+      margin: 36px 0 18px;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .about-img {
+      width: 100%;
+      border-radius: 14px;
+      background: #ddd;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border: 3px solid white;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+    }
+
+    .about-text p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
       text-align: center;
-      padding: 30px;
-      background: #111827;
-      color: white;
-      margin-top: 40px;
     }
 
-    /* RESPONSIVE */
+    .contact-card .icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .contact-card h5 {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .contact-card a {
+      color: var(--muted);
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .contact-card a:hover { color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--primary);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 22px;
+      font-size: 13px;
+    }
+
+    /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav div {
-        margin-top: 10px;
-      }
-
-      header h1 {
-        font-size: 28px;
-      }
+      .hero h1 { font-size: 34px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .navbar { padding: 12px 20px; }
     }
-
   </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <nav>
-    <h2>Divya Ramroop</h2>
-    <div>
-      <a href="#home">Home</a>
-      <a href="#projects">Projects</a>
-      <a href="#publications">Publications</a>
-      <a href="#experience">Experience</a>
-      <a href="#about">About</a>
+  <!-- ── BOOTSTRAP NAVBAR ── -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#" onclick="showPage('home')">Divya Ramroop</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link active" id="nav-home" onclick="showPage('home')">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-projects" onclick="showPage('projects')">Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-publications" onclick="showPage('publications')">Publications</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-experience" onclick="showPage('experience')">Experience</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-about" onclick="showPage('about')">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-contact" onclick="showPage('contact')">Contact</a>
+        </li>
+      </ul>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <header id="home">
-    <h1>Divya Ramroop</h1>
-    <p>[Your tagline here]</p>
-    <img src="" alt="Your Photo">
-  </header>
-
-  <!-- INTRO -->
-  <section>
-    <h2>Introduction</h2>
-    <p>[Write a short introduction about yourself here]</p>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <h2>Projects</h2>
-
-    <div class="card">
-      <h3>[Project Title]</h3>
-      <p>[Project description]</p>
-      <p><strong>Tech:</strong> [Technologies used]</p>
-      <a href="#">View Project →</a>
+  <!-- ══════════════════════════════════════════ -->
+  <!-- HOME PAGE -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="page-home" class="page active">
+    <div class="hero">
+      <img src="" alt="Divya Ramroop" class="hero-avatar">
+      <h1>Divya Ramroop</h1>
+      <p class="tagline">[Your tagline here — e.g. "Software Engineer · Researcher · Builder"]</p>
+      <button class="hero-cta" onclick="showPage('projects')">View My Work →</button>
     </div>
+  </div>
 
-    <div class="card">
-      <h3>[Project Title]</h3>
-      <p>[Project description]</p>
-      <p><strong>Tech:</strong> [Technologies used]</p>
-      <a href="#">View Project →</a>
+  <!-- ══════════════════════════════════════════ -->
+  <!-- PROJECTS PAGE -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="page-projects" class="page">
+    <div class="inner-page">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">Things I've built and shipped.</p>
+
+      <div class="project-card">
+        <h3>[Project Title]</h3>
+        <p>[Project description — what it does, why it matters, what problem it solves.]</p>
+        <span class="tech-badge">[Tech 1]</span>
+        <span class="tech-badge">[Tech 2]</span>
+        <span class="tech-badge">[Tech 3]</span>
+        <br>
+        <a href="#" class="card-link">View Project →</a>
+      </div>
+
+      <div class="project-card">
+        <h3>[Project Title]</h3>
+        <p>[Project description — what it does, why it matters, what problem it solves.]</p>
+        <span class="tech-badge">[Tech 1]</span>
+        <span class="tech-badge">[Tech 2]</span>
+        <br>
+        <a href="#" class="card-link">View Project →</a>
+      </div>
+
+      <div class="project-card">
+        <h3>[Project Title]</h3>
+        <p>[Project description — what it does, why it matters, what problem it solves.]</p>
+        <span class="tech-badge">[Tech 1]</span>
+        <span class="tech-badge">[Tech 2]</span>
+        <br>
+        <a href="#" class="card-link">View Project →</a>
+      </div>
     </div>
+  </div>
 
-  </section>
+  <!-- ══════════════════════════════════════════ -->
+  <!-- PUBLICATIONS PAGE -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="page-publications" class="page">
+    <div class="inner-page">
+      <h2 class="section-title">Publications</h2>
+      <p class="section-subtitle">Research papers, articles, and writing.</p>
 
-  <!-- PUBLICATIONS -->
-  <section id="publications">
-    <h2>Publications</h2>
+      <div class="project-card">
+        <h3>[Publication / Article Title]</h3>
+        <p class="exp-meta">[Journal / Conference / Platform] · [Year]</p>
+        <p>[Short summary of what this paper or article is about and its key contribution.]</p>
+        <a href="#" class="card-link">Read more →</a>
+      </div>
 
-    <div class="card">
-      <h3>[Article Title]</h3>
-      <p>[Short summary]</p>
-      <a href="#">Read more →</a>
+      <div class="project-card">
+        <h3>[Publication / Article Title]</h3>
+        <p class="exp-meta">[Journal / Conference / Platform] · [Year]</p>
+        <p>[Short summary of what this paper or article is about and its key contribution.]</p>
+        <a href="#" class="card-link">Read more →</a>
+      </div>
     </div>
+  </div>
 
-  </section>
+  <!-- ══════════════════════════════════════════ -->
+  <!-- EXPERIENCE PAGE -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="page-experience" class="page">
+    <div class="inner-page">
+      <h2 class="section-title">Experience</h2>
+      <p class="section-subtitle">Where I've worked and studied.</p>
 
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <h2>Experience</h2>
+      <div class="exp-label">Work</div>
 
-    <h3>Work</h3>
-    <p>[Role, Company, Dates]</p>
-    <ul>
-      <li>[Achievement or responsibility]</li>
-    </ul>
+      <div class="exp-block">
+        <h4>[Job Title] · [Company Name]</h4>
+        <p class="exp-meta">[Start Date] – [End Date]</p>
+        <ul>
+          <li>[Key achievement or responsibility]</li>
+          <li>[Key achievement or responsibility]</li>
+          <li>[Key achievement or responsibility]</li>
+        </ul>
+      </div>
 
-    <h3 style="margin-top:20px;">Education</h3>
-    <p>[Degree, University, Dates]</p>
+      <div class="exp-block">
+        <h4>[Job Title] · [Company Name]</h4>
+        <p class="exp-meta">[Start Date] – [End Date]</p>
+        <ul>
+          <li>[Key achievement or responsibility]</li>
+          <li>[Key achievement or responsibility]</li>
+        </ul>
+      </div>
 
-  </section>
+      <div class="exp-label">Education</div>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p>[Write more personal details here]</p>
-  </section>
+      <div class="exp-block">
+        <h4>[Degree] · [University Name]</h4>
+        <p class="exp-meta">[Start Year] – [End Year]</p>
+        <ul>
+          <li>[Relevant coursework, thesis, or achievement]</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-  <!-- CONTACT -->
-  <section class="contact">
-    <h2>Contact</h2>
-    <p>Email: [contactdramroop@gmail.com]</p>
-    <p>LinkedIn: [www.linkedin.com/in/divya-ramroop/]</p>
-  </section>
+  <!-- ══════════════════════════════════════════ -->
+  <!-- ABOUT PAGE -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="page-about" class="page">
+    <div class="inner-page">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-subtitle">A little more about who I am.</p>
+
+      <div class="about-grid">
+        <img src="" alt="Divya Ramroop" class="about-img">
+        <div class="about-text">
+          <p>[Write a paragraph about your background — where you're from, what drives you, what field you work in.]</p>
+          <p>[Write about your interests, passions, or what you do outside of work.]</p>
+          <p>[Anything else you'd like people to know — values, goals, fun facts.]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- CONTACT PAGE -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="page-contact" class="page">
+    <div class="inner-page">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-subtitle">Let's connect — I'd love to hear from you.</p>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="icon">✉️</div>
+          <h5>Email</h5>
+          <a href="mailto:your@email.com">[your@email.com]</a>
+        </div>
+        <div class="contact-card">
+          <div class="icon">💼</div>
+          <h5>LinkedIn</h5>
+          <a href="#" target="_blank">[linkedin.com/in/yourname]</a>
+        </div>
+        <div class="contact-card">
+          <div class="icon">🐙</div>
+          <h5>GitHub</h5>
+          <a href="#" target="_blank">[github.com/yourname]</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2026 Divya Ramroop</p>
+    <p>© 2026 Divya Ramroop · Built with care</p>
   </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const pages = ['home', 'projects', 'publications', 'experience', 'about', 'contact'];
+
+    function showPage(name) {
+      // Hide all pages
+      pages.forEach(p => {
+        document.getElementById('page-' + p).classList.remove('active');
+        const navEl = document.getElementById('nav-' + p);
+        if (navEl) navEl.classList.remove('active');
+      });
+
+      // Show selected page
+      document.getElementById('page-' + name).classList.add('active');
+      const activeNav = document.getElementById('nav-' + name);
+      if (activeNav) activeNav.classList.add('active');
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Close mobile menu
+      const navMenu = document.getElementById('navbarNav');
+      if (navMenu.classList.contains('show')) {
+        $('#navbarNav').collapse('hide');
+      }
+    }
+  </script>
 
 </body>
 </html>
