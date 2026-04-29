@@ -341,4 +341,340 @@
 
     /* LinkedIn embed */
     .linkedin-label {
-      
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .linkedin-embed-wrap {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+    }
+    .linkedin-embed-wrap iframe { display: block; width: 100%; border: none; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--primary);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 22px;
+      font-size: 13px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 760px) {
+      .project-body { grid-template-columns: 1fr; gap: 36px; }
+      .project-sidebar { position: static; }
+      .project-title { font-size: 28px; }
+      .metric-grid { grid-template-columns: 1fr; }
+      .linkedin-embed-wrap iframe { height: 700px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="index.html">Divya Ramroop</a>
+    <div class="ml-auto">
+      <a href="index.html#projects" class="back-btn">← Back to Projects</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="project-hero">
+    <div class="project-hero-inner">
+      <span class="project-type-badge">● Article · Explainable AI · Clinical Perspective</span>
+      <h1 class="project-title">The Question Nobody Asks About AI in Medicine</h1>
+      <p class="project-tagline">
+        A doctor's look at AI in medical imaging: not just whether it's right, but whether it's right for the right reasons.
+      </p>
+      <div class="project-meta-row">
+        <div class="project-meta-item">✍️ <span class="label">Authors:</span>&nbsp;Divya Ramroop &amp; Jayesh Choudhari</div>
+        <div class="project-meta-item">📅 <span class="label">Published:</span>&nbsp;2025</div>
+        <div class="project-meta-item">🗂️ <span class="label">Dataset:</span>&nbsp;624 chest X-rays</div>
+        <div class="project-meta-item">🏷️ <span class="label">Platform:</span>&nbsp;LinkedIn Article</div>
+      </div>
+      <div class="tag-row">
+        <span class="tag">Explainable AI</span>
+        <span class="tag">GradCAM</span>
+        <span class="tag">Chest X-Ray</span>
+        <span class="tag">Pneumonia Detection</span>
+        <span class="tag">ResNet-18</span>
+        <span class="tag">DenseNet-121</span>
+        <span class="tag">Patient Safety</span>
+        <span class="tag">Clinical AI</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="project-body">
+
+    <!-- LEFT: Content -->
+    <div class="project-content">
+
+      <!-- Section 1 -->
+      <h2 id="s1">1. Does It Get the Right Answer for the Right Reason?</h2>
+      <p>
+        We hear a lot about AI being accurate. <strong>"92% accurate." "93% accurate." "Outperforms radiologists in some benchmarks."</strong>
+        But here is the question nobody asks loudly enough in medicine:
+      </p>
+
+      <div class="highlight-box">
+        <p>Does it get the right answer for the right reason?</p>
+      </div>
+
+      <p>
+        Because in clinical practice, that distinction is everything. A doctor who gives the correct diagnosis by luck — or by looking at the wrong thing — is not a doctor you can trust when the next case is harder.
+      </p>
+      <p>
+        So we decided to look inside two AI models trained to detect pneumonia from chest X-rays. Not just at <em>what</em> they said. At <em>how</em> they were thinking.
+      </p>
+
+      <h3>So, We Looked Inside the AI</h3>
+      <p>
+        We gave two AI models 624 chest X-rays and asked them to identify pneumonia. Both were highly accurate. By any standard benchmark, these are excellent models.
+      </p>
+      <p>
+        But we also used <strong>Explainable AI</strong> — a technique that draws a heat map over each X-ray showing <em>where</em> the AI was looking when it made its decision. Red = the AI focused heavily here. Blue = the AI barely noticed this area.
+      </p>
+
+      <p>We then measured three things about every heat map, across all 624 images:</p>
+
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="m-icon">🎯</div>
+          <div class="m-title">Focused</div>
+          <div class="m-desc">Did the model correctly localise the diseased area, or was it scattered across the image?</div>
+        </div>
+        <div class="metric-card">
+          <div class="m-icon">🔍</div>
+          <div class="m-title">Honest</div>
+          <div class="m-desc">Does the highlighted region actually drive the decision, or is the heat map just noise?</div>
+        </div>
+        <div class="metric-card">
+          <div class="m-icon">🔁</div>
+          <div class="m-title">Consistent</div>
+          <div class="m-desc">If you asked it to explain itself twice, did you get the same answer both times?</div>
+        </div>
+      </div>
+
+      <p>A good doctor should pass all three tests. So should a good AI.</p>
+
+      <div class="content-divider"></div>
+
+      <!-- Section 2 -->
+      <h2 id="s2">2. Four Important Cases</h2>
+
+      <table class="case-table">
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Real Condition</th>
+            <th>Model Said</th>
+            <th>Medical Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>TP</strong> (True Positive)</td>
+            <td>Pneumonia</td>
+            <td>Pneumonia</td>
+            <td>Correctly caught the disease</td>
+          </tr>
+          <tr>
+            <td><strong>TN</strong> (True Negative)</td>
+            <td>Normal</td>
+            <td>Normal</td>
+            <td>Correctly cleared a healthy patient</td>
+          </tr>
+          <tr>
+            <td><strong>FN</strong> (False Negative)</td>
+            <td>Pneumonia</td>
+            <td>Normal</td>
+            <td class="danger">MISSED the disease — most dangerous</td>
+          </tr>
+          <tr>
+            <td><strong>FP</strong> (False Positive)</td>
+            <td>Normal</td>
+            <td>Pneumonia</td>
+            <td>False alarm — healthy patient flagged</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="case-cards">
+
+        <div class="case-card case-tp">
+          <div class="case-card-header">
+            <span class="case-badge badge-tp">✓ True Positive</span>
+            <span class="case-card-title">Both AIs got it right — and for the right reason</span>
+          </div>
+          <p>
+            Both AIs focused on the exact same spot: the lower-right lung, where the infection actually was. Cover that region and their confidence drops immediately. They were not guessing — they genuinely saw something and showed it. <strong>This is a trustworthy analysis.</strong>
+          </p>
+        </div>
+
+        <div class="case-card case-tn">
+          <div class="case-card-header">
+            <span class="case-badge badge-tn">✓ True Negative</span>
+            <span class="case-card-title">Healthy lungs — explained just as clearly</span>
+          </div>
+          <p>
+            Both AIs said normal. But look at the heat maps anyway — they are still focused, still locked onto specific regions, still able to show their work even when the answer is "nothing to see here." <strong>A good AI should explain its confidence just as clearly as its concern. These did.</strong>
+          </p>
+        </div>
+
+        <div class="case-card case-fn">
+          <div class="case-card-header">
+            <span class="case-badge badge-fn">⚠ False Negative</span>
+            <span class="case-card-title">Missed disease — the most dangerous failure</span>
+          </div>
+          <p>
+            Both models were under 1% confident that this patient had pneumonia. The patient did. The heat maps showed both were looking at the correct region of the lung — and yet both failed to recognise what they saw. This is a <strong>perceptual failure</strong>: the AI looked in the right place but lacked the experience to interpret what was there. We see this in clinical practice too — a less experienced colleague examines the right area, documents what they observe, and still reaches the wrong conclusion.
+          </p>
+        </div>
+
+        <div class="case-card case-fp">
+          <div class="case-card-header">
+            <span class="case-badge badge-fp">⚡ False Positive</span>
+            <span class="case-card-title">False alarm — but the two models disagreed on confidence</span>
+          </div>
+          <p>
+            Both models raised a pneumonia flag on a healthy patient — but not in the same way. <strong>ResNet-18 was 87% confident. DenseNet-121 was 56%</strong> and its heat map was noticeably less focused. In practice, this matters: when an AI is confident and its heatmap clearly highlights a specific region, a doctor can act on it. But when the AI is uncertain and the heatmap is blurry or scattered, the doctor should not simply accept it — they should take a closer look, ask a colleague, or request another scan.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="content-divider"></div>
+
+      <!-- Section 3 -->
+      <h2 id="s3">3. Three Things Every Doctor Should Know About AI</h2>
+
+      <div class="key-points">
+        <h4>Key Clinical Takeaways</h4>
+        <ul>
+          <li>
+            <div>
+              <strong style="color:var(--primary);">One: Accuracy is not the same as trustworthiness.</strong><br>
+              Both models were statistically identical in accuracy. Their explainability profiles were completely different. One flags its own uncertainty clearly. One provides a detectable warning signal when it is about to be wrong.
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong style="color:var(--primary);">Two: The threshold matters more than the model.</strong><br>
+              The standard threshold for flagging pneumonia is far too conservative for clinical medicine. At the default setting, models missed 4–9 pneumonia cases per model on the test set. By adjusting the threshold to flag earlier, that dropped to 1–2 — at the cost of more false alarms. In medicine, a false alarm sends someone for more tests. A missed pneumonia can cost a life. The threshold should reflect that.
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong style="color:var(--primary);">Three: Not all AI errors are the same.</strong><br>
+              The false negative case showed a perceptual failure — the AI looked in the right place and could not recognise what it saw. Understanding the type of error matters as much as counting the errors.
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-divider"></div>
+
+      <!-- Section 4 -->
+      <h2 id="s4">4. The Question I Now Ask Every AI</h2>
+      <p>
+        We are not at a point where AI diagnoses patients alone. But we are well past the point where AI is not involved in reading scans, flagging cases, and informing clinical decisions.
+      </p>
+      <p>The question I used to ask was: <em>"Is it accurate?"</em></p>
+
+      <div class="highlight-box">
+        <p>"Can I see how it thinks? Does its reasoning make medical sense? And does it tell me when to doubt it?"</p>
+      </div>
+
+      <p>
+        Those are the same questions we ask of residents. Of colleagues. Of any mind we are asked to trust in the care of patients. <strong>AI should be no different.</strong>
+      </p>
+      <p style="margin-top:18px; font-size:14px; color:var(--muted);">
+        Technical report of this study:
+        <a href="https://github.com/rav3vx/RAD-XAI-Radiographic-Deep-Explainable-AI-Framework"
+           target="_blank"
+           style="color:var(--accent); font-weight:600; text-decoration:none;">
+          RAD-XAI-Radiographic-Deep-Explainable-AI-Framework →
+        </a>
+      </p>
+
+    </div>
+
+    <!-- RIGHT: Sidebar -->
+    <div class="project-sidebar">
+
+      <!-- Details card -->
+      <div class="sidebar-card">
+        <h5>Project Details</h5>
+        <div class="sidebar-meta-row">
+          <div class="sidebar-meta-item">
+            <strong>Authors</strong>
+            Divya Ramroop &amp; Jayesh Choudhari
+          </div>
+          <div class="sidebar-meta-item">
+            <strong>Published</strong>
+            2025
+          </div>
+          <div class="sidebar-meta-item">
+            <strong>Dataset</strong>
+            624 chest X-rays (pneumonia detection)
+          </div>
+          <div class="sidebar-meta-item">
+            <strong>Models Used</strong>
+            ResNet-18 · DenseNet-121
+          </div>
+          <div class="sidebar-meta-item">
+            <strong>Method</strong>
+            Explainable AI / GradCAM heat maps
+          </div>
+          <div class="sidebar-meta-item">
+            <strong>Focus</strong>
+            Focused · Honest · Consistent
+          </div>
+        </div>
+      </div>
+
+      <!-- Table of contents -->
+      <div class="sidebar-card">
+        <h5>Contents</h5>
+        <ul class="toc-list">
+          <li><a href="#s1"><span class="toc-num">1.</span> Right answer for the right reason?</a></li>
+          <li><a href="#s2"><span class="toc-num">2.</span> Four important cases</a></li>
+          <li><a href="#s3"><span class="toc-num">3.</span> Three things every doctor should know</a></li>
+          <li><a href="#s4"><span class="toc-num">4.</span> The question I now ask every AI</a></li>
+        </ul>
+      </div>
+
+      <!-- LinkedIn embed -->
+      <p class="linkedin-label">📄 Full Article on LinkedIn</p>
+      <div class="linkedin-embed-wrap">
+        <iframe
+          src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7434206874054606849"
+          height="923"
+          frameborder="0"
+          allowfullscreen=""
+          title="When AI Reads X-Rays — LinkedIn Article">
+        </iframe>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Divya Ramroop · Built with care</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
