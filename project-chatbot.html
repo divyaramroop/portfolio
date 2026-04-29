@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mental Illness Chatbot | Divya Ramroop</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #2d2d6b;
+      --accent: #e85d4a;
+      --light-bg: #f8f7f4;
+      --card-bg: #ffffff;
+      --text: #1a1a2e;
+      --muted: #6b6b80;
+      --border: #e5e3e0;
+      --green: #16a34a;
+      --green-bg: #dcfce7;
+      --purple-soft: #eae8f5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--light-bg); color: var(--text); }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      background: var(--card-bg) !important;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 40px;
+      position: sticky; top: 0; z-index: 1000;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+    .navbar-brand { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--primary) !important; }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 14px; font-weight: 600; color: var(--primary);
+      text-decoration: none; padding: 7px 16px;
+      border: 1px solid var(--border); border-radius: 8px;
+      background: var(--card-bg); transition: all 0.2s;
+    }
+    .back-btn:hover { background: #f0f0f8; border-color: var(--primary); text-decoration: none; color: var(--primary); }
+
+    /* ── HERO ── */
+    .project-hero {
+      background: linear-gradient(160deg, #f8f7f4 50%, #e8f5ea 100%);
+      padding: 72px 24px 60px;
+      border-bottom: 1px solid var(--border);
+    }
+    .project-hero-inner { max-width: 860px; margin: 0 auto; }
+
+    .project-type-badge {
+      display: inline-block;
+      background: var(--green-bg); color: var(--green);
+      font-size: 11px; font-weight: 700;
+      padding: 4px 12px; border-radius: 20px;
+      letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 20px;
+    }
+    .project-title {
+      font-family: 'DM Serif Display', serif; font-size: 40px;
+      color: var(--primary); line-height: 1.15; margin-bottom: 14px; max-width: 720px;
+    }
+    .project-tagline {
+      font-size: 17px; color: var(--muted); line-height: 1.75;
+      max-width: 660px; margin-bottom: 24px;
+    }
+    .project-meta-row { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; margin-bottom: 20px; }
+    .project-meta-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); font-weight: 500; }
+    .project-meta-item .label { font-weight: 700; color: var(--primary); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      display: inline-block; background: var(--purple-soft); color: var(--primary);
+      font-size: 12px; font-weight: 600; padding: 4px 12px;
+      border-radius: 20px; border: 1px solid #d4d1ed;
+    }
+    .tag.green { background: var(--green-bg); border-color: #86efac; color: var(--green); }
+
+    /* ── BODY GRID ── */
+    .project-body {
+      max-width: 860px; margin: 0 auto;
+      padding: 60px 24px 80px;
+      display: grid; grid-template-columns: 1fr 300px;
+      gap: 52px; align-items: start;
+    }
+
+    /* ── CONTENT ── */
+    .project-content h2 {
+      font-family: 'DM Serif Display', serif; font-size: 24px;
+      color: var(--primary); margin-top: 40px; margin-bottom: 14px;
+    }
+    .project-content h2:first-child { margin-top: 0; }
+    .project-content p { font-size: 15px; color: var(--muted); line-height: 1.85; margin-bottom: 14px; }
+    .project-content strong { color: var(--text); }
+
+    .highlight-box {
+      background: #fff8f7; border-left: 4px solid var(--accent);
+      border-radius: 0 10px 10px 0; padding: 16px 22px; margin: 24px 0;
+    }
+    .highlight-box p {
+      font-family: 'DM Serif Display', serif; font-size: 18px;
+      color: var(--primary); line-height: 1.6; margin: 0;
+    }
+
+    .highlight-box.green {
+      background: #f0fdf4; border-left-color: var(--green);
+    }
+    .highlight-box.green p { color: #14532d; }
+
+    .content-divider { height: 1px; background: var(--border); margin: 36px 0; }
+
+    /* ── STAT CARDS ── */
+    .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 24px 0; }
+    .stat-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px 16px; text-align: center;
+    }
+    .stat-card .stat-num {
+      font-family: 'DM Serif Display', serif; font-size: 32px;
+      color: var(--primary); line-height: 1.1; margin-bottom: 6px;
+    }
+    .stat-card .stat-label { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    /* ── FEATURE COLUMNS ── */
+    .feature-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+    .feature-col {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 22px;
+    }
+    .feature-col-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .feature-col-icon { font-size: 22px; }
+    .feature-col-title { font-weight: 700; font-size: 15px; color: var(--primary); }
+    .feature-list { list-style: none; padding: 0; margin: 0; }
+    .feature-list li {
+      font-size: 13px; color: var(--muted); line-height: 1.7;
+      padding: 6px 0; border-bottom: 1px solid var(--border);
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .feature-list li:last-child { border-bottom: none; }
+    .feature-list li::before { content: '→'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── SAFETY LAYER ── */
+    .safety-card {
+      background: #fff8f7; border: 1px solid #f5c4be;
+      border-radius: 14px; padding: 24px 26px; margin: 24px 0;
+    }
+    .safety-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .safety-card-header h4 { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--primary); }
+    .safety-steps { list-style: none; padding: 0; margin: 0; counter-reset: safety-counter; }
+    .safety-steps li {
+      font-size: 14px; color: var(--muted); line-height: 1.7;
+      padding: 10px 0 10px 44px; border-bottom: 1px solid #f5c4be;
+      position: relative;
+    }
+    .safety-steps li:last-child { border-bottom: none; }
+    .safety-steps li::before {
+      counter-increment: safety-counter;
+      content: counter(safety-counter);
+      position: absolute; left: 0; top: 8px;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--accent); color: white;
+      font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── QUOTE BLOCK ── */
+    .quote-block {
+      background: var(--purple-soft); border-radius: 16px;
+      padding: 28px 30px; margin: 28px 0; position: relative;
+    }
+    .quote-block::before {
+      content: '"';
+      font-family: 'DM Serif Display', serif; font-size: 80px;
+      color: rgba(45,45,107,0.12); position: absolute;
+      top: -10px; left: 20px; line-height: 1;
+    }
+    .quote-block p {
+      font-family: 'DM Serif Display', serif; font-size: 17px;
+      color: var(--primary); line-height: 1.75; margin: 0;
+      position: relative; z-index: 1;
+    }
+    .quote-attribution { margin-top: 14px; font-size: 13px; font-weight: 600; color: var(--muted); }
+
+    /* ── SIDEBAR ── */
+    .project-sidebar { position: sticky; top: 88px; }
+    .sidebar-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 22px; margin-bottom: 20px;
+    }
+    .sidebar-card h5 {
+      font-weight: 700; font-size: 11px; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border);
+    }
+    .sidebar-meta-row { display: flex; flex-direction: column; gap: 12px; }
+    .sidebar-meta-item { font-size: 13px; color: var(--muted); }
+    .sidebar-meta-item strong { display: block; color: var(--primary); font-weight: 600; margin-bottom: 2px; }
+
+    .toc-list { list-style: none; padding: 0; margin: 0; }
+    .toc-list li { border-bottom: 1px solid var(--border); }
+    .toc-list li:last-child { border-bottom: none; }
+    .toc-list a { display: block; padding: 9px 0; font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .toc-list a:hover { color: var(--primary); text-decoration: none; }
+    .toc-list .toc-icon { margin-right: 6px; }
+
+    /* Status pill */
+    .status-ongoing {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--green-bg); color: var(--green);
+      font-size: 12px; font-weight: 700; padding: 6px 14px;
+      border-radius: 20px; margin-bottom: 4px;
+    }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 1.8s infinite; }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+    /* ── FOOTER ── */
+    footer { background: var(--primary); color: rgba(255,255,255,0.6); text-align: center; padding: 22px; font-size: 13px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 760px) {
+      .project-body { grid-template-columns: 1fr; gap: 36px; }
+      .project-sidebar { position: static; }
+      .project-title { font-size: 28px; }
+      .stat-grid { grid-template-columns: 1fr; }
+      .feature-cols { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="index.html">Divya Ramroop</a>
+    <div class="ml-auto">
+      <a href="index.html#projects" class="back-btn">← Back to Projects</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="project-hero">
+    <div class="project-hero-inner">
+      <span class="project-type-badge">● Ongoing · AI Health Tool</span>
+      <h1 class="project-title">Mental Illness Chatbot</h1>
+      <p class="project-tagline">
+        An AI-powered conversational assistant for people experiencing depression and stress — available 24/7, non-judgmental, and designed to bridge the treatment gap before professional help is sought.
+      </p>
+      <div class="project-meta-row">
+        <div class="project-meta-item">✍️ <span class="label">Built by:</span>&nbsp;Divya Ramroop</div>
+        <div class="project-meta-item">📅 <span class="label">Status:</span>&nbsp;In Development</div>
+        <div class="project-meta-item">🧠 <span class="label">Domain:</span>&nbsp;Mental Health · Conversational AI</div>
+      </div>
+      <div class="tag-row">
+        <span class="tag">NLP</span>
+        <span class="tag">Conversational AI</span>
+        <span class="tag">CBT</span>
+        <span class="tag">Mental Health</span>
+        <span class="tag green">● Ongoing</span>
+        <span class="tag">Clinical Safety</span>
+        <span class="tag">Health Equity</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="project-body">
+
+    <!-- LEFT: Content -->
+    <div class="project-content">
+
+      <!-- The Problem -->
+      <h2 id="s-problem">The Problem</h2>
+      <p>
+        The biggest barrier to mental healthcare is not the lack of treatment — it is the step <em>before</em> treatment. Most people who need help never reach a therapist's office. The reasons are always the same: stigma, cost, and simply not knowing where to start.
+      </p>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-num">75%</div>
+          <div class="stat-label">of people with mental illness globally receive <strong>no treatment</strong> at all</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3am</div>
+          <div class="stat-label">Mental health crises don't follow office hours — most support does</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">1st</div>
+          <div class="stat-label">The chatbot is designed to be the <strong>first safe space</strong> — not the last resort</div>
+        </div>
+      </div>
+
+      <p>
+        People with money see therapists. Everyone else suffers alone. Mental healthcare is one of the most unequally distributed services globally — and a well-designed AI tool, built carefully and ethically, could genuinely reduce that gap.
+      </p>
+
+      <div class="highlight-box green">
+        <p>The chatbot doesn't replace a therapist. It bridges the gap between feeling bad and seeking help.</p>
+      </div>
+
+      <div class="content-divider"></div>
+
+      <!-- How It Works -->
+      <h2 id="s-how">How It Works</h2>
+      <p>
+        The chatbot uses NLP to understand emotional state from conversation — word choice, tone, and patterns — and responds using evidence-based approaches drawn from clinical practice. Two conditions are the primary focus: <strong>stress</strong> and <strong>depression</strong>.
+      </p>
+
+      <div class="feature-cols">
+        <div class="feature-col">
+          <div class="feature-col-header">
+            <span class="feature-col-icon">😮‍💨</span>
+            <span class="feature-col-title">For Stress</span>
+          </div>
+          <ul class="feature-list">
+            <li>Detects stress signals through word choice, tone, and conversation patterns</li>
+            <li>Guided breathing exercises — real-time, step by step</li>
+            <li>Grounding techniques — the 5-4-3-2-1 method</li>
+            <li>Cognitive reframing to challenge unhelpful thought patterns</li>
+            <li>Lifestyle nudges — sleep hygiene, movement, routine reminders</li>
+          </ul>
+        </div>
+        <div class="feature-col">
+          <div class="feature-col-header">
+            <span class="feature-col-icon">🫂</span>
+            <span class="feature-col-title">For Depression</span>
+          </div>
+          <ul class="feature-list">
+            <li>Motivational interviewing — gentle questions that help the person feel heard</li>
+            <li>Daily mood check-ins to track patterns over time</li>
+            <li>CBT-based responses drawing on Cognitive Behavioral Therapy evidence</li>
+            <li>Non-judgmental tone throughout — no pressure, no alarm</li>
+            <li>Escalation protocol when serious risk signals are detected</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-divider"></div>
+
+      <!-- Safety Layer -->
+      <h2 id="s-safety">The Safety Layer</h2>
+      <p>
+        The most critical design decision in any mental health AI is knowing when to stop. The chatbot has a built-in escalation protocol — it is designed to recognise its own limits.
+      </p>
+
+      <div class="safety-card">
+        <div class="safety-card-header">
+          <span style="font-size:22px;">🛡️</span>
+          <h4>Escalation Protocol</h4>
+        </div>
+        <ol class="safety-steps">
+          <li>Detects high-risk language — hopelessness, self-harm mentions, expressions of despair — through trained NLP signal detection</li>
+          <li>Immediately shifts tone — acknowledges what the person said, validates their experience, does not minimise</li>
+          <li>Does not attempt to counsel or resolve the crisis independently</li>
+          <li>Provides direct crisis helpline numbers relevant to the user's location</li>
+          <li>Encourages immediate contact with a professional or trusted person</li>
+        </ol>
+      </div>
+
+      <p>
+        This is not a fallback — it is a first-class feature. An AI tool that does not know when to hand over is not a safe tool. The escalation protocol is built in from the ground up, not added as an afterthought.
+      </p>
+
+      <div class="content-divider"></div>
+
+      <!-- Equity Angle -->
+      <h2 id="s-equity">Why This Matters for Health Equity</h2>
+      <p>
+        The treatment gap in mental health is not random. It follows the same fault lines as every other healthcare inequality — income, geography, language, stigma. Wealthier, better-connected people see therapists. Everyone else either waits, self-medicates, or does nothing.
+      </p>
+      <p>
+        A chatbot available on any smartphone, free, in multiple languages, at any hour — is not a luxury tool. It is an equity tool. The goal is to reach the people who would never walk into a clinic but might, quietly, open an app at 3am and type how they're feeling.
+      </p>
+
+      <div class="highlight-box">
+        <p>The tension between AI's promise and its risk is real — and building this carefully, ethically, and with proper clinical oversight is not optional. It is the whole point.</p>
+      </div>
+
+      <div class="content-divider"></div>
+
+      <!-- In Their Own Words -->
+      <h2 id="s-vision">The Vision</h2>
+
+      <div class="quote-block">
+        <p>
+          The core idea is that the biggest barrier to mental healthcare is not treatment itself — it's the step before treatment. People don't seek help because of stigma, cost, or simply not knowing where to start. The chatbot is designed to be that first safe space — available anytime, completely private, non-judgmental.
+        </p>
+        <p class="quote-attribution">— Divya Ramroop</p>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Sidebar -->
+    <div class="project-sidebar">
+
+      <!-- Status -->
+      <div class="sidebar-card" style="text-align:center; padding: 24px;">
+        <div class="status-ongoing" style="margin: 0 auto 12px;">
+          <div class="status-dot"></div>
+          Actively in Development
+        </div>
+        <p style="font-size:13px; color:var(--muted); line-height:1.6;">This project is ongoing. Updates will be added as the chatbot develops.</p>
+      </div>
+
+      <!-- Project details -->
+      <div class="sidebar-card">
+        <h5>Project Details</h5>
+        <div class="sidebar-meta-row">
+          <div class="sidebar-meta-item">
+            <strong>Built by</strong>
+            Divya Ramroop
+          </div>
+          <div class="sidebar-meta-item">
+            <strong>Target users</strong>
+            People experiencing stress or depression
+          </div>
+          <div class="sidebar-meta-item">
+            <strong>Evidence base</strong>
+            CBT · Motivational Interviewing · 5-4-3-2-1 Grounding
+          </div>
+          <div class="sidebar-meta-item">
+            <strong>Key feature</strong>
+            Clinical escalation protocol for high-risk signals
+          </div>
+          <div class="sidebar-meta-item">
+            <strong>Access model</strong>
+            Free · Mobile · 24/7
+          </div>
+        </div>
+      </div>
+
+      <!-- TOC -->
+      <div class="sidebar-card">
+        <h5>On This Page</h5>
+        <ul class="toc-list">
+          <li><a href="#s-problem"><span class="toc-icon">🔍</span>The problem</a></li>
+          <li><a href="#s-how"><span class="toc-icon">🤖</span>How it works</a></li>
+          <li><a href="#s-safety"><span class="toc-icon">🛡️</span>Safety layer</a></li>
+          <li><a href="#s-equity"><span class="toc-icon">⚖️</span>Health equity</a></li>
+          <li><a href="#s-vision"><span class="toc-icon">💬</span>The vision</a></li>
+        </ul>
+      </div>
+
+      <!-- Key concepts -->
+      <div class="sidebar-card">
+        <h5>Key Concepts</h5>
+        <div class="sidebar-meta-row">
+          <div class="sidebar-meta-item">
+            <strong>Treatment Gap</strong>
+            The gap between people who need mental healthcare and those who actually receive it
+          </div>
+          <div class="sidebar-meta-item">
+            <strong>CBT</strong>
+            Cognitive Behavioral Therapy — the clinical evidence base the chatbot draws from
+          </div>
+          <div class="sidebar-meta-item">
+            <strong>Escalation Protocol</strong>
+            When the bot detects it's out of its depth and directs to professional crisis support
+          </div>
+          <div class="sidebar-meta-item">
+            <strong>Equity</strong>
+            Designing AI tools that serve those without access to traditional mental healthcare
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Divya Ramroop · Built with care</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
