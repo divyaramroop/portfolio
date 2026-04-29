@@ -64,12 +64,13 @@
        HOME
     ══════════════════════════════════════ */
     .home-bio-wrap {
-      background: linear-gradient(160deg, rgba(248,247,244,0.92) 50%, rgba(234,232,245,0.88) 100%), url('images/home-bg2.jpg') top center / 100% auto no-repeat;
-      padding: 90px 24px 80px;
-      min-height: calc(100vh - 72px);
-      display: flex;
-      align-items: center;
-    }
+    background: linear-gradient(160deg, #f8f7f4 60%, #eae8f5 100%);
+    padding: 90px 24px 80px;
+    min-height: calc(100vh - 72px);
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
     .home-bio-inner {
       max-width: 860px;
       margin: 0 auto;
@@ -539,50 +540,55 @@
     </div>
   </nav>
 
-  <!-- ══════════════════════════════════════════
-       HOME
-  ══════════════════════════════════════════ -->
-  <section id="home" class="section-light">
-    <div class="home-bio-wrap">
-      <div class="home-bio-inner">
-        <div>
-          <!--
-            ADD YOUR PHOTO:
-            Put your photo in the images/ folder and name it profile.jpg
-            It will show as a circle. If the file is missing, initials DR appear.
-          -->
-          <div class="home-avatar-wrap">
-            <img
-              src="images/divya_ramroop.jpg"
-              alt="Divya Ramroop"
-              class="home-avatar-img"
-              onerror="this.style.display='none'; document.getElementById('avatar-fallback').style.display='flex';"
-            >
-            <div class="home-avatar-fallback" id="avatar-fallback">DR</div>
-          </div>
-        </div>
-        <div>
-          <h1 class="home-name">Divya Ramroop</h1>
-          <p class="home-role">Researcher · Health Policies · AI &amp; Health Systems · TU Berlin</p>
-          <p class="home-affiliation">Research Fellow at European Observatory on Health Systems and Policies &amp; TU Berlin Department of Health Care Management</p>
-          <p class="home-location">📍 Berlin, Germany</p>
-          <div class="home-interests">
-            <span class="home-interests-label">Research Interests</span>
-            <span class="interest-tag">Policy Research</span>
-            <span class="interest-tag">Digital Health</span>
-            <span class="interest-tag">AI in Healthcare</span>
-          </div>
-          <div class="home-cta-row">
-            <a href="#contact" class="btn-primary-cta">✉️ Contact Me</a>
-<a href="resume.pdf" download="Divya-Ramroop-Resume.pdf" class="btn-secondary-cta">My CV &nbsp;<img src="images/external-link.png" alt="open" style="width:13px; height:13px; vertical-align:middle; opacity:0.7;"></a>
-          </div>
+<!-- ══════════════════════════════════════════
+     HOME
+══════════════════════════════════════════ -->
+<section id="home" class="section-light">
+  <div class="home-bio-wrap">
+
+    <img
+      src="images/home-bg.jpg"
+      alt=""
+      style="position:absolute; top:0; left:0; width:100%; height:auto;
+             z-index:0; display:block; pointer-events:none; opacity:0.18;">
+
+    <div class="home-bio-inner" style="position:relative; z-index:1;">
+
+      <div>
+        <div class="home-avatar-wrap">
+          <img
+            src="images/divya_ramroop.jpg"
+            alt="Divya Ramroop"
+            class="home-avatar-img"
+            onerror="this.style.display='none'; document.getElementById('avatar-fallback').style.display='flex';"
+          >
+          <div class="home-avatar-fallback" id="avatar-fallback">DR</div>
         </div>
       </div>
+
+      <div>
+        <h1 class="home-name">Divya Ramroop</h1>
+        <p class="home-role">Researcher · Health Policies · AI &amp; Health Systems · TU Berlin</p>
+        <p class="home-affiliation">Research Fellow at European Observatory on Health Systems and Policies &amp; TU Berlin Department of Health Care Management</p>
+        <p class="home-location">📍 Berlin, Germany</p>
+        <div class="home-interests">
+          <span class="home-interests-label">Research Interests</span>
+          <span class="interest-tag">Policy Research</span>
+          <span class="interest-tag">Digital Health</span>
+          <span class="interest-tag">AI in Healthcare</span>
+        </div>
+        <div class="home-cta-row">
+          <a href="#contact" class="btn-primary-cta">✉️ Contact Me</a>
+          <a href="resume.pdf" download="Divya-Ramroop-Resume.pdf" class="btn-secondary-cta">My CV &nbsp;<img src="images/external-link.png" alt="open" style="width:13px; height:13px; vertical-align:middle; opacity:0.7;"></a>
+        </div>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
-  <div class="section-divider"></div>
-
+<div class="section-divider"></div>
+  
   <!-- ══════════════════════════════════════════
        ABOUT
   ══════════════════════════════════════════ -->
