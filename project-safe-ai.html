@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study of Safe Use of AI | Divya Ramroop</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #2d2d6b;
+      --accent: #e85d4a;
+      --light-bg: #f8f7f4;
+      --card-bg: #ffffff;
+      --text: #1a1a2e;
+      --muted: #6b6b80;
+      --border: #e5e3e0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--light-bg);
+      color: var(--text);
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      background: var(--card-bg) !important;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+    .navbar-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: var(--primary) !important;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+      padding: 7px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--card-bg);
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      background: #f0f0f8;
+      border-color: var(--primary);
+      text-decoration: none;
+      color: var(--primary);
+    }
+
+    /* ── HERO ── */
+    .project-hero {
+      background: linear-gradient(160deg, #f8f7f4 55%, #eae8f5 100%);
+      padding: 72px 24px 60px;
+      border-bottom: 1px solid var(--border);
+    }
+    .project-hero-inner { max-width: 860px; margin: 0 auto; }
+
+    .project-type-badge {
+      display: inline-block;
+      background: #dcfce7;
+      color: #16a34a;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .project-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 40px;
+      color: var(--primary);
+      line-height: 1.15;
+      margin-bottom: 14px;
+      max-width: 720px;
+    }
+    .project-tagline {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 660px;
+      margin-bottom: 24px;
+    }
+    .project-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .project-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .project-meta-item .label { font-weight: 700; color: var(--primary); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      display: inline-block;
+      background: #eae8f5;
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid #d4d1ed;
+    }
+
+    /* ── BODY GRID ── */
+    .project-body {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 52px;
+      align-items: start;
+    }
+
+    /* ── CONTENT ── */
+    .project-content h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 24px;
+      color: var(--primary);
+      margin-top: 40px;
+      margin-bottom: 14px;
+    }
+    .project-content h2:first-child { margin-top: 0; }
+
+    .project-content p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 14px;
+    }
+    .project-content strong { color: var(--text); }
+
+    .highlight-box {
+      background: #fff8f7;
+      border-left: 4px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 16px 22px;
+      margin: 24px 0;
+    }
+    .highlight-box p {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      color: var(--primary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .content-divider { height: 1px; background: var(--border); margin: 36px 0; }
+
+    /* ── SERIES LIST ── */
+    .series-list { display: flex; flex-direction: column; gap: 16px; margin: 28px 0; }
+
+    .series-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 24px;
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 18px;
+      align-items: start;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .series-item:hover {
+      box-shadow: 0 6px 24px rgba(45,45,107,0.09);
+      transform: translateY(-2px);
+    }
+    .series-item.active { border-color: #c8c6de; border-left: 4px solid var(--primary); }
+    .series-item.upcoming { opacity: 0.6; }
+
+    .series-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .series-item.upcoming .series-num {
+      background: var(--border);
+      color: var(--muted);
+    }
+
+    .series-item-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 17px;
+      color: var(--primary);
+      margin-bottom: 5px;
+      line-height: 1.3;
+    }
+    .series-item.upcoming .series-item-title { color: var(--muted); }
+
+    .series-item-status {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+      margin-bottom: 6px;
+    }
+    .status-published { background: #dcfce7; color: #16a34a; }
+    .status-coming { background: #f1f5f9; color: var(--muted); }
+
+    .series-item-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .read-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .read-link:hover { text-decoration: underline; color: var(--accent); }
+
+    /* ── ARTICLE SECTION (first article deep-dive) ── */
+    .article-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 30px;
+      margin: 28px 0;
+    }
+    .article-section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .article-section h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      color: var(--primary);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .article-section p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+    .article-section p:last-of-type { margin-bottom: 0; }
+
+    /* LinkedIn lazy embed */
+    .linkedin-trigger-wrap { margin-top: 20px; }
+    .linkedin-placeholder {
+      background: var(--light-bg);
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
+    }
+    .linkedin-placeholder p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 14px !important;
+    }
+    .load-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s;
+    }
+    .load-btn:hover { background: #3d3d8b; }
+
+    .linkedin-embed-wrap {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      display: none;
+    }
+    .linkedin-embed-wrap iframe { display: block; width: 100%; border: none; }
+
+    /* ── SIDEBAR ── */
+    .project-sidebar { position: sticky; top: 88px; }
+
+    .sidebar-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+    .sidebar-card h5 {
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-meta-row { display: flex; flex-direction: column; gap: 12px; }
+    .sidebar-meta-item { font-size: 13px; color: var(--muted); }
+    .sidebar-meta-item strong { display: block; color: var(--primary); font-weight: 600; margin-bottom: 2px; }
+
+    /* TOC */
+    .toc-list { list-style: none; padding: 0; margin: 0; }
+    .toc-list li { border-bottom: 1px solid var(--border); }
+    .toc-list li:last-child { border-bottom: none; }
+    .toc-list a {
+      display: block;
+      padding: 9px 0;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .toc-list a:hover { color: var(--primary); text-decoration: none; }
+    .toc-list .toc-num { font-weight: 700; color: var(--accent); margin-right: 6px; }
+
+    /* Progress pill */
+    .series-progress {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 22px;
+      margin-bottom: 20px;
+    }
+    .progress-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .progress-bar-wrap {
+      background: var(--border);
+      border-radius: 20px;
+      height: 8px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), #5a5aaa);
+      border-radius: 20px;
+      width: 20%; /* 1 of ~5 articles */
+      transition: width 1s ease;
+    }
+    .progress-text {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--primary);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 22px;
+      font-size: 13px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 760px) {
+      .project-body { grid-template-columns: 1fr; gap: 36px; }
+      .project-sidebar { position: static; }
+      .project-title { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="index.html">Divya Ramroop</a>
+    <div class="ml-auto">
+      <a href="index.html#projects" class="back-btn">← Back to Projects</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="project-hero">
+    <div class="project-hero-inner">
+      <span class="project-type-badge">● Ongoing · Article Series</span>
+      <h1 class="project-title">Study of Safe Use of AI in Healthcare</h1>
+      <p class="project-tagline">
+        A series of awareness articles exploring how clinicians, researchers, and patients can engage with artificial intelligence responsibly — without compromising safety, privacy, or trust.
+      </p>
+      <div class="project-meta-row">
+        <div class="project-meta-item">✍️ <span class="label">Author:</span>&nbsp;Divya Ramroop</div>
+        <div class="project-meta-item">📅 <span class="label">Started:</span>&nbsp;2025</div>
+        <div class="project-meta-item">📄 <span class="label">Format:</span>&nbsp;LinkedIn Article Series</div>
+        <div class="project-meta-item">🏥 <span class="label">Focus:</span>&nbsp;Healthcare AI · Patient Safety</div>
+      </div>
+      <div class="tag-row">
+        <span class="tag">AI Safety</span>
+        <span class="tag">Healthcare AI</span>
+        <span class="tag">Data Privacy</span>
+        <span class="tag">Digital Health</span>
+        <span class="tag">Responsible AI</span>
+        <span class="tag">Clinical Awareness</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="project-body">
+
+    <!-- LEFT: Content -->
+    <div class="project-content">
+
+      <h2 id="s-about">About This Series</h2>
+      <p>
+        AI is entering healthcare faster than most clinicians were trained to understand it. Tools that summarise patient notes, flag abnormalities in scans, suggest diagnoses, or assist in treatment planning are already in use — and more are coming.
+      </p>
+      <p>
+        But the conversation around <em>how to use these tools safely</em> is lagging behind. This series is an attempt to close that gap — written by a doctor, for anyone working in or alongside healthcare who wants to engage with AI thoughtfully.
+      </p>
+
+      <div class="highlight-box">
+        <p>The goal is not to slow down AI in medicine. It's to make sure we know what we're doing when we speed it up.</p>
+      </div>
+
+      <p>
+        Each article in this series tackles one practical dimension of AI safety — from protecting sensitive data, to understanding what an AI actually does with your input, to knowing when not to trust a result. No technical background required.
+      </p>
+
+      <div class="content-divider"></div>
+
+      <!-- Series list -->
+      <h2 id="s-series">The Series</h2>
+
+      <div class="series-list">
+
+        <!-- Article 1 — Published -->
+        <div class="series-item active">
+          <div class="series-num">1</div>
+          <div>
+            <span class="series-item-status status-published">● Published</span>
+            <div class="series-item-title">How to Use AI Safely Without Compromising Your Sensitive Data</div>
+            <p class="series-item-desc">
+              When you type a patient case into ChatGPT or paste clinical notes into an AI tool, where does that data go? This article walks through the real risks of sharing sensitive health information with AI systems — and gives practical, jargon-free guidance on how to protect it.
+            </p>
+            <a href="#article-1" class="read-link">Read below ↓</a>
+          </div>
+        </div>
+
+        <!-- Article 2 — Coming -->
+        <div class="series-item upcoming">
+          <div class="series-num">2</div>
+          <div>
+            <span class="series-item-status status-coming">Coming Soon</span>
+            <div class="series-item-title">When Should You Trust an AI Diagnosis?</div>
+            <p class="series-item-desc">Not every AI output is equal. This article explores how to read AI-generated clinical suggestions critically — and when to push back.</p>
+          </div>
+        </div>
+
+        <!-- Article 3 — Coming -->
+        <div class="series-item upcoming">
+          <div class="series-num">3</div>
+          <div>
+            <span class="series-item-status status-coming">Coming Soon</span>
+            <div class="series-item-title">Bias in Healthcare AI: What Doctors Aren't Being Told</div>
+            <p class="series-item-desc">AI models trained on skewed data can perpetuate health inequities. This article breaks down how bias enters medical AI — and what clinicians can do about it.</p>
+          </div>
+        </div>
+
+        <!-- Article 4 — Coming -->
+        <div class="series-item upcoming">
+          <div class="series-num">4</div>
+          <div>
+            <span class="series-item-status status-coming">Coming Soon</span>
+            <div class="series-item-title">AI and Informed Consent: What Patients Deserve to Know</div>
+            <p class="series-item-desc">If AI was involved in your diagnosis, should the patient know? This article examines the evolving ethics of transparency in AI-assisted care.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="content-divider"></div>
+
+      <!-- Deep-dive: Article 1 -->
+      <h2 id="article-1">Article 1 — Full Read</h2>
+
+      <div class="article-section">
+        <p class="article-section-label">📄 Published Article · 2025</p>
+        <h3>How to Use AI Safely Without Compromising Your Sensitive Data</h3>
+        <p>
+          Every time a clinician or researcher pastes a patient summary, a clinical note, or a case description into a public AI tool, they are making a data decision — whether they realise it or not. Most don't.
+        </p>
+        <p>
+          This article covers the practical steps anyone in healthcare can take to benefit from AI tools without exposing patient data, institutional information, or their own sensitive records to unnecessary risk. It is written to be accessible to anyone — no IT background required.
+        </p>
+
+        <!-- Lazy LinkedIn embed -->
+        <div class="linkedin-trigger-wrap">
+          <div class="linkedin-placeholder" id="li-placeholder-1">
+            <p>Read the full article on LinkedIn</p>
+            <button class="load-btn" onclick="loadEmbed1()">Load Article</button>
+          </div>
+          <div class="linkedin-embed-wrap" id="li-embed-1">
+            <!-- iframe injected on click -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Sidebar -->
+    <div class="project-sidebar">
+
+      <!-- Series progress -->
+      <div class="series-progress">
+        <p class="progress-label">Series Progress</p>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+        <p class="progress-text">1 of 4 articles published</p>
+      </div>
+
+      <!-- Project details -->
+      <div class="sidebar-card">
+        <h5>Project Details</h5>
+        <div class="sidebar-meta-row">
+          <div class="sidebar-meta-item">
+            <strong>Author</strong>
+            Divya Ramroop
+          </div>
+          <div class="sidebar-meta-item">
+            <strong>Series started</strong>
+            2025
+          </div>
+          <div class="sidebar-meta-item">
+            <strong>Format</strong>
+            LinkedIn article series
+          </div>
+          <div class="sidebar-meta-item">
+            <strong>Audience</strong>
+            Clinicians, researchers, health professionals
+          </div>
+          <div class="sidebar-meta-item">
+            <strong>Status</strong>
+            <span style="color:#16a34a; font-weight:600;">● Ongoing</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOC -->
+      <div class="sidebar-card">
+        <h5>On This Page</h5>
+        <ul class="toc-list">
+          <li><a href="#s-about">About this series</a></li>
+          <li><a href="#s-series">The series</a></li>
+          <li><a href="#article-1"><span class="toc-num">1.</span> Safe AI &amp; Sensitive Data</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Divya Ramroop · Built with care</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    function loadEmbed1() {
+      document.getElementById('li-placeholder-1').style.display = 'none';
+      const wrap = document.getElementById('li-embed-1');
+      wrap.style.display = 'block';
+      const iframe = document.createElement('iframe');
+      iframe.src = 'https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7455153729701298176?collapsed=1';
+      iframe.height = '566';
+      iframe.frameBorder = '0';
+      iframe.allowFullscreen = true;
+      iframe.title = 'How to Use AI Safely Without Compromising Your Sensitive Data';
+      iframe.style.width = '100%';
+      iframe.style.border = 'none';
+      iframe.style.display = 'block';
+      wrap.appendChild(iframe);
+    }
+
+    // Animate progress bar on load
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('progress-fill').style.width = '25%';
+      }, 400);
+    });
+  </script>
+
+</body>
+</html>
