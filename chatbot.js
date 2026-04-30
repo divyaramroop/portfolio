@@ -214,4 +214,183 @@ function buildChatUI() {
     #dr-input {
       flex:1; border:none; border-radius:22px; padding:9px 14px;
       font-size:13.5px; outline:none; font-family:'DM Sans',sans-serif; background:white; color:#111;
-    
+    }
+    #dr-send {
+      width:38px; height:38px; border-radius:50%;
+      background:#2d2d6b; color:white; border:none; cursor:pointer;
+      font-size:15px; flex-shrink:0;
+      display:flex; align-items:center; justify-content:center;
+      transition:background 0.2s, transform 0.15s;
+    }
+    #dr-send:hover { background:#3d3d8b; transform:scale(1.08); }
+
+    @media (max-width:480px) {
+      #dr-win { width:calc(100vw - 24px); right:12px; }
+      #dr-bubble-wrap { right:16px; bottom:16px; }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Bubble wrap
+  const bubbleWrap = document.createElement('div');
+  bubbleWrap.id = 'dr-bubble-wrap';
+
+  const label = document.createElement('div');
+  label.id = 'dr-bubble-label';
+  label.innerHTML = `
+    <div class="dr-label-top">💬 Chat with Divya</div>
+    <div class="dr-label-sub"><span class="dr-label-dot"></span>online now · ask me anything</div>
+  `;
+
+  const bubbleInner = document.createElement('div');
+  bubbleInner.id = 'dr-bubble-inner';
+
+  const bubble = document.createElement('button');
+  bubble.id = 'dr-bubble';
+  bubble.setAttribute('aria-label', 'Chat with Divya');
+  bubble.innerHTML = `
+    <img src="images/divya_ramroop.jpg" alt="Divya"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <span class="bubble-fallback" style="display:none;">DR</span>
+  `;
+
+  const onlineDot = document.createElement('div');
+  onlineDot.id = 'dr-bubble-online';
+
+  bubbleInner.appendChild(bubble);
+  bubbleInner.appendChild(onlineDot);
+  bubbleWrap.appendChild(label);
+  bubbleWrap.appendChild(bubbleInner);
+  document.body.appendChild(bubbleWrap);
+
+  // Chat window
+  const win = document.createElement('div');
+  win.id = 'dr-win';
+  const dateStr = new Date().toLocaleDateString([], { weekday:'long', day:'numeric', month:'long' });
+  win.innerHTML = `
+    <div id="dr-header">
+      <img id="dr-header-avatar" src="images/divya_ramroop.jpg" alt="Divya Ramroop"
+        onerror="this.style.display='none'; document.getElementById('dr-header-fallback').style.display='flex';">
+      <div id="dr-header-fallback">DR</div>
+      <div class="dr-header-info">
+        <div class="dr-header-name">Divya Ramroop</div>
+        <div class="dr-header-status" id="dr-status">online</div>
+      </div>
+      <button id="dr-close">✕</button>
+    </div>
+    <div id="dr-msgs">
+      <div class="dr-date-stamp">${dateStr}</div>
+    </div>
+    <div id="dr-chips">
+      <button class="dr-chip">What do you research?</button>
+      <button class="dr-chip">Your projects</button>
+      <button class="dr-chip">How to contact you?</button>
+      <button class="dr-chip">Your background</button>
+    </div>
+    <div id="dr-input-row">
+      <input id="dr-input" type="text" placeholder="Message Divya…" autocomplete="off" maxlength="200">
+      <button id="dr-send" aria-label="Send">➤</button>
+    </div>
+  `;
+  document.body.appendChild(win);
+
+  const msgs   = win.querySelector('#dr-msgs');
+  const input  = win.querySelector('#dr-input');
+  const status = win.querySelector('#dr-status');
+
+  function getTime() {
+    return new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
+  }
+  function addUserMessage(text) {
+    const wrap = document.createElement('div');
+    wrap.className = 'dr-msg-wrap user';
+    wrap.innerHTML = `
+      <div class="dr-bubble-text">${text}</div>
+      <div class="dr-meta">
+        <span class="dr-time">${getTime()}</span>
+        <span class="dr-ticks">✓</span>
+      </div>`;
+    msgs.appendChild(wrap);
+    msgs.scrollTop = msgs.scrollHeight;
+    const tick = wrap.querySelector('.dr-ticks');
+    setTimeout(() => { tick.textContent = '✓✓'; tick.classList.add('delivered'); }, 500);
+    setTimeout(() => { tick.classList.remove('delivered'); tick.classList.add('read'); }, 1000);
+  }
+  function showTyping() {
+    status.textContent = 'typing...';
+    const wrap = document.createElement('div');
+    wrap.id = 'dr-typing-wrap';
+    wrap.innerHTML = `<div class="dr-typing-bubble"><span></span><span></span><span></span></div>`;
+    msgs.appendChild(wrap);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+  function removeTyping() {
+    const t = document.getElementById('dr-typing-wrap');
+    if (t) t.remove();
+    status.textContent = 'online';
+  }
+  function addBotMessage(text) {
+    const wrap = document.createElement('div');
+    wrap.className = 'dr-msg-wrap bot';
+    wrap.innerHTML = `
+      <div class="dr-bubble-text">${text}</div>
+      <div class="dr-meta"><span class="dr-time">${getTime()}</span></div>`;
+    msgs.appendChild(wrap);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+  function sendMessage(text) {
+    text = text.trim();
+    if (!text) return;
+    input.value = '';
+    win.querySelector('#dr-chips').style.display = 'none';
+    addUserMessage(text);
+    setTimeout(() => {
+      showTyping();
+      setTimeout(() => {
+        removeTyping();
+        addBotMessage(getResponse(text));
+      }, 900 + Math.random() * 600);
+    }, 1000);
+  }
+  function openChat() {
+    win.classList.add('open');
+    label.style.display = 'none';
+    if (msgs.querySelectorAll('.dr-msg-wrap').length === 0) {
+      setTimeout(() => {
+        showTyping();
+        setTimeout(() => {
+          removeTyping();
+          addBotMessage("Hey! 👋 I'm Divya. Feel free to ask me anything about my research, projects, or how to get in touch!");
+        }, 900);
+      }, 300);
+    }
+    setTimeout(() => input.focus(), 250);
+  }
+  function closeChat() {
+    win.classList.remove('open');
+    label.style.display = 'flex';
+  }
+
+  bubble.addEventListener('click', () => win.classList.contains('open') ? closeChat() : openChat());
+  label.addEventListener('click', openChat);
+  win.querySelector('#dr-close').addEventListener('click', closeChat);
+  win.querySelector('#dr-send').addEventListener('click', () => sendMessage(input.value));
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(input.value); });
+  win.querySelectorAll('.dr-chip').forEach(chip => {
+    chip.addEventListener('click', () => sendMessage(chip.textContent));
+  });
+}
+
+// ── INIT: load intents then build UI ─────────
+
+fetch('intents.json')
+  .then(res => res.json())
+  .then(data => {
+    INTENTS = data;
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', buildChatUI);
+    } else {
+      buildChatUI();
+    }
+  })
+  .catch(err => console.warn('Could not load intents.json:', err));
