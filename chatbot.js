@@ -62,7 +62,7 @@ const INTENTS = [
   {
     id: "contact",
     triggers: ["contact", "email", "reach", "message", "get in touch", "talk", "connect", "linkedin", "mail", "write to"],
-    response: "Of course! You can reach me at: ✉️ contactdramroop@gmail.com (personal) or divya.ramroop@tu-berlin.de (work). I'm also on LinkedIn — linkedin.com/in/divya-ramroop. Always happy to connect! 😊"
+    response: "Of course! You can reach me at: ✉️ <a href='mailto:contactdramroop@gmail.com' style='color:#2d2d6b;font-weight:600;'>contactdramroop@gmail.com</a> (personal) or <a href='mailto:divya.ramroop@tu-berlin.de' style='color:#2d2d6b;font-weight:600;'>divya.ramroop@tu-berlin.de</a> (work). I'm also on LinkedIn — <a href='https://linkedin.com/in/divya-ramroop' target='_blank' style='color:#2d2d6b;font-weight:600;'>linkedin.com/in/divya-ramroop</a>. Always happy to connect! 😊"
   },
   {
     id: "location",
@@ -77,12 +77,12 @@ const INTENTS = [
   {
     id: "observatory",
     triggers: ["observatory", "european observatory", "who", "world health", "obs", "pace", "eu", "europe", "european"],
-    response: "The European Observatory on Health Systems and Policies is a WHO/Europe partnership — really incredible organisation. I work at the Berlin Hub based at TU Berlin and contribute to OBS-PACE, analysing cancer care across EU member states. If you want to see my official profile there: eurohealthobservatory.who.int/about-us/staff/biography/divya-ramroop"
+    response: "The European Observatory on Health Systems and Policies is a WHO/Europe partnership — really incredible organisation. I work at the Berlin Hub based at TU Berlin and contribute to OBS-PACE, analysing cancer care across EU member states. My official profile: <a href='https://eurohealthobservatory.who.int/about-us/staff/biography/divya-ramroop' target='_blank' style='color:#2d2d6b;font-weight:600;'>eurohealthobservatory.who.int</a>"
   },
   {
     id: "cv_resume",
     triggers: ["cv", "resume", "download", "hire", "hiring", "work with", "collaborate", "opportunity"],
-    response: "You can download my CV from the home page using the 'My CV' button! For collaboration or opportunities I'd love to hear from you — contactdramroop@gmail.com or divya.ramroop@tu-berlin.de 📄"
+    response: "You can download my CV from the home page using the 'My CV' button! For collaboration or opportunities I'd love to hear from you — <a href='mailto:contactdramroop@gmail.com' style='color:#2d2d6b;font-weight:600;'>contactdramroop@gmail.com</a> 📄"
   },
   {
     id: "skills",
@@ -97,7 +97,7 @@ const INTENTS = [
   {
     id: "bye",
     triggers: ["bye", "goodbye", "see you", "cya", "later", "take care", "done", "exit", "close"],
-    response: "It was lovely chatting! Feel free to reach out anytime — contactdramroop@gmail.com. Take care! 👋😊"
+    response: "It was lovely chatting! Feel free to reach out anytime — <a href='mailto:contactdramroop@gmail.com' style='color:#2d2d6b;font-weight:600;'>contactdramroop@gmail.com</a>. Take care! 👋😊"
   }
 ];
 
@@ -138,13 +138,13 @@ function getBigrams(tokens) {
 }
 function scoreIntent(input, intent) {
   const inputTokens = tokenize(input);
-  const inputStems = inputTokens.map(stem);
+  const inputStems  = inputTokens.map(stem);
   const inputBigrams = getBigrams(inputTokens);
   const normalizedInput = normalize(input);
   let score = 0;
   for (const trigger of intent.triggers) {
-    const triggerNorm = normalize(trigger);
-    const triggerStems = tokenize(trigger).map(stem);
+    const triggerNorm   = normalize(trigger);
+    const triggerStems  = tokenize(trigger).map(stem);
     if (normalizedInput.includes(triggerNorm)) { score += 10 + triggerNorm.length * 0.3; continue; }
     for (const bigram of inputBigrams) {
       if (triggerNorm.includes(bigram) || bigram === triggerNorm) score += 6;
@@ -170,7 +170,7 @@ function getResponse(input) {
     const score = scoreIntent(input, intent);
     if (score > bestScore) { bestScore = score; best = intent; }
   }
-  if (bestScore < 3) return "Hmm, I'm not sure I caught that! Try asking about my research, projects, background, or how to reach me. Or just email me directly at contactdramroop@gmail.com 😊";
+  if (bestScore < 3) return "Hmm, I'm not sure I caught that! Try asking about my research, projects, background, or how to reach me. Or just email me directly at <a href='mailto:contactdramroop@gmail.com' style='color:#2d2d6b;font-weight:600;'>contactdramroop@gmail.com</a> 😊";
   return best.response;
 }
 
@@ -183,211 +183,234 @@ function buildChatUI() {
   style.textContent = `
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap');
 
-    #dr-bubble {
-  position: fixed; bottom: 28px; right: 28px; z-index: 9999;
-  width: 62px; height: 62px; border-radius: 50%;
-  background: #2d2d6b; border: none; cursor: pointer;
-  box-shadow: 0 4px 22px rgba(45,45,107,0.38);
-  display: flex; align-items: center; justify-content: center;
-  transition: transform 0.2s, box-shadow 0.2s;
-  overflow: hidden; padding: 0;
-  border: 3px solid #ffffff;
-}
-#dr-bubble:hover { transform: scale(1.07); box-shadow: 0 6px 30px rgba(45,45,107,0.48); }
-#dr-bubble img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  border-radius: 50%;
-  display: block;
-}
-#dr-bubble .bubble-fallback {
-  font-size: 20px; font-weight: 700; color: white;
-  font-family: 'DM Sans', sans-serif;
-}
-#dr-bubble-online {
-  position: fixed;
-  bottom: 30px; right: 30px;
-  width: 14px; height: 14px;
-  background: #25d366;
-  border-radius: 50%;
-  border: 2px solid white;
-  z-index: 10000;
-  pointer-events: none;
-}
+    /* ── BUBBLE WRAP ── */
+    #dr-bubble-wrap {
+      position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+      display: flex; align-items: center; gap: 10px;
+      flex-direction: row-reverse;
+    }
 
+    /* ── LABEL PILL ── */
+    #dr-bubble-label {
+      background: white; border-radius: 20px;
+      padding: 10px 16px; box-shadow: 0 4px 18px rgba(0,0,0,0.13);
+      display: flex; flex-direction: column; gap: 2px;
+      cursor: pointer; border: 1px solid #e5e3e0;
+      animation: dr-label-in 0.5s cubic-bezier(0.34,1.56,0.64,1) 1.2s both;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    #dr-bubble-label:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.16); transform: translateY(-2px); }
+    @keyframes dr-label-in {
+      from { opacity:0; transform: translateX(12px) scale(0.9); }
+      to   { opacity:1; transform: translateX(0) scale(1); }
+    }
+    .dr-label-top  { font-size:13px; font-weight:700; color:#1a1a2e; font-family:'DM Sans',sans-serif; white-space:nowrap; }
+    .dr-label-sub  { font-size:11px; color:#6b6b80; font-family:'DM Sans',sans-serif; white-space:nowrap; }
+    .dr-label-dot  {
+      display:inline-block; width:7px; height:7px;
+      background:#25d366; border-radius:50%; margin-right:4px;
+      animation: dr-pulse 1.8s infinite;
+    }
+    @keyframes dr-pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+    /* ── PHOTO BUBBLE ── */
+    #dr-bubble-inner { position:relative; flex-shrink:0; }
+    #dr-bubble {
+      width: 62px; height: 62px; border-radius: 50%;
+      background: #2d2d6b; border: 3px solid #ffffff; cursor: pointer;
+      box-shadow: 0 4px 22px rgba(45,45,107,0.38);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      overflow: hidden; padding: 0;
+    }
+    #dr-bubble:hover { transform: scale(1.07); box-shadow: 0 6px 30px rgba(45,45,107,0.48); }
+    #dr-bubble img {
+      width:100%; height:100%;
+      object-fit:cover; object-position: center 15%;
+      border-radius:50%; display:block;
+    }
+    #dr-bubble .bubble-fallback {
+      font-size:20px; font-weight:700; color:white;
+      font-family:'DM Sans',sans-serif;
+    }
+    #dr-bubble-online {
+      position:absolute; bottom:2px; right:2px;
+      width:14px; height:14px; background:#25d366;
+      border-radius:50%; border:2px solid white;
+      pointer-events:none; z-index:10001;
+    }
+
+    /* ── CHAT WINDOW ── */
     #dr-win {
       position: fixed; bottom: 96px; right: 28px; z-index: 9998;
       width: 340px; max-height: 520px;
-      background: #ece5dd;
-      border-radius: 18px;
+      background: #ece5dd; border-radius: 18px;
       box-shadow: 0 10px 48px rgba(0,0,0,0.18);
       display: flex; flex-direction: column; overflow: hidden;
       transform: scale(0.9) translateY(12px);
       opacity: 0; pointer-events: none;
       transition: transform 0.24s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s ease;
     }
-    #dr-win.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
+    #dr-win.open { transform: scale(1) translateY(0); opacity:1; pointer-events:all; }
 
     /* Header */
     #dr-header {
-      background: #2d2d6b;
-      padding: 12px 14px;
-      display: flex; align-items: center; gap: 10px;
-      flex-shrink: 0;
+      background: #2d2d6b; padding: 12px 14px;
+      display: flex; align-items: center; gap: 10px; flex-shrink: 0;
     }
     #dr-header-avatar {
-      width: 38px; height: 38px; border-radius: 50%;
-      object-fit: cover; flex-shrink: 0;
-      border: 2px solid rgba(255,255,255,0.25);
+      width:38px; height:38px; border-radius:50%;
+      object-fit:cover; object-position: center 15%;
+      flex-shrink:0; border:2px solid rgba(255,255,255,0.25);
     }
     #dr-header-fallback {
-      width: 38px; height: 38px; border-radius: 50%;
-      background: rgba(255,255,255,0.18); color: white;
-      font-size: 14px; font-weight: 700;
-      display: none; align-items: center; justify-content: center;
-      flex-shrink: 0; font-family: 'DM Sans', sans-serif;
+      width:38px; height:38px; border-radius:50%;
+      background:rgba(255,255,255,0.18); color:white;
+      font-size:14px; font-weight:700;
+      display:none; align-items:center; justify-content:center;
+      flex-shrink:0; font-family:'DM Sans',sans-serif;
     }
-    .dr-header-info { flex: 1; }
-    .dr-header-name { font-size: 15px; font-weight: 600; color: white; font-family: 'DM Sans', sans-serif; }
-    .dr-header-status { font-size: 11.5px; color: rgba(255,255,255,0.72); font-family: 'DM Sans', sans-serif; }
+    .dr-header-info { flex:1; }
+    .dr-header-name   { font-size:15px; font-weight:600; color:white; font-family:'DM Sans',sans-serif; }
+    .dr-header-status { font-size:11.5px; color:rgba(255,255,255,0.72); font-family:'DM Sans',sans-serif; }
     #dr-close {
-      background: none; border: none; color: rgba(255,255,255,0.8);
-      font-size: 16px; cursor: pointer; padding: 2px 4px;
+      background:none; border:none; color:rgba(255,255,255,0.8);
+      font-size:16px; cursor:pointer; padding:2px 4px;
     }
-    #dr-close:hover { color: white; }
+    #dr-close:hover { color:white; }
 
     /* Messages */
     #dr-msgs {
-      flex: 1; overflow-y: auto; padding: 12px 10px;
-      display: flex; flex-direction: column; gap: 4px;
-      scroll-behavior: smooth;
+      flex:1; overflow-y:auto; padding:12px 10px;
+      display:flex; flex-direction:column; gap:4px;
+      scroll-behavior:smooth;
     }
-    #dr-msgs::-webkit-scrollbar { width: 3px; }
-    #dr-msgs::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+    #dr-msgs::-webkit-scrollbar { width:3px; }
+    #dr-msgs::-webkit-scrollbar-thumb { background:#ccc; border-radius:3px; }
 
-    /* Date stamp */
     .dr-date-stamp {
-      text-align: center; font-size: 11px;
-      color: #888; background: rgba(255,255,255,0.55);
-      border-radius: 6px; padding: 3px 10px;
-      align-self: center; margin: 4px 0 8px;
-      font-family: 'DM Sans', sans-serif;
+      text-align:center; font-size:11px; color:#888;
+      background:rgba(255,255,255,0.55); border-radius:6px;
+      padding:3px 10px; align-self:center; margin:4px 0 8px;
+      font-family:'DM Sans',sans-serif;
     }
 
-    /* Message bubbles */
-    .dr-msg-wrap { display: flex; flex-direction: column; max-width: 78%; animation: dr-slide 0.18s ease; }
-    @keyframes dr-slide { from { opacity:0; transform: translateY(5px); } to { opacity:1; transform:none; } }
-    .dr-msg-wrap.user { align-self: flex-end; align-items: flex-end; }
-    .dr-msg-wrap.bot  { align-self: flex-start; align-items: flex-start; }
+    /* Bubbles */
+    .dr-msg-wrap { display:flex; flex-direction:column; max-width:78%; animation:dr-slide 0.18s ease; }
+    @keyframes dr-slide { from{opacity:0;transform:translateY(5px);} to{opacity:1;transform:none;} }
+    .dr-msg-wrap.user { align-self:flex-end; align-items:flex-end; }
+    .dr-msg-wrap.bot  { align-self:flex-start; align-items:flex-start; }
 
     .dr-bubble-text {
-      padding: 8px 12px; border-radius: 10px;
-      font-size: 13.5px; line-height: 1.5;
-      font-family: 'DM Sans', sans-serif; word-wrap: break-word;
-      position: relative;
+      padding:8px 12px; border-radius:10px;
+      font-size:13.5px; line-height:1.55;
+      font-family:'DM Sans',sans-serif; word-wrap:break-word;
     }
     .dr-msg-wrap.user .dr-bubble-text {
-      background: #dcf8c6;
-      border-bottom-right-radius: 3px;
-      color: #111;
+      background:#dcf8c6; border-bottom-right-radius:3px; color:#111;
     }
     .dr-msg-wrap.bot .dr-bubble-text {
-      background: #ffffff;
-      border-bottom-left-radius: 3px;
-      color: #111;
+      background:#ffffff; border-bottom-left-radius:3px; color:#111;
     }
 
-    /* Timestamp + ticks row */
-    .dr-meta {
-      display: flex; align-items: center; gap: 3px;
-      margin-top: 2px; padding: 0 2px;
-    }
-    .dr-time { font-size: 10.5px; color: #888; font-family: 'DM Sans', sans-serif; }
-    .dr-ticks { font-size: 13px; color: #888; line-height: 1; transition: color 0.3s; }
-    .dr-ticks.delivered { color: #888; }
-    .dr-ticks.read { color: #53bdeb; }
+    .dr-meta { display:flex; align-items:center; gap:3px; margin-top:2px; padding:0 2px; }
+    .dr-time  { font-size:10.5px; color:#888; font-family:'DM Sans',sans-serif; }
+    .dr-ticks { font-size:13px; color:#888; line-height:1; transition:color 0.3s; }
+    .dr-ticks.delivered { color:#888; }
+    .dr-ticks.read      { color:#53bdeb; }
 
-    /* Typing indicator */
-    #dr-typing-wrap {
-      align-self: flex-start; animation: dr-slide 0.18s ease;
-    }
+    /* Typing */
+    #dr-typing-wrap { align-self:flex-start; animation:dr-slide 0.18s ease; }
     .dr-typing-bubble {
-      background: #fff; border-radius: 10px; border-bottom-left-radius: 3px;
-      padding: 10px 14px; display: flex; gap: 4px; align-items: center;
+      background:#fff; border-radius:10px; border-bottom-left-radius:3px;
+      padding:10px 14px; display:flex; gap:4px; align-items:center;
     }
     .dr-typing-bubble span {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: #aaa; display: inline-block;
-      animation: dr-bounce 1.3s infinite;
+      width:7px; height:7px; border-radius:50%; background:#aaa;
+      display:inline-block; animation:dr-bounce 1.3s infinite;
     }
-    .dr-typing-bubble span:nth-child(2) { animation-delay: 0.2s; }
-    .dr-typing-bubble span:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes dr-bounce { 0%,60%,100% { transform:translateY(0); } 30% { transform:translateY(-5px); } }
+    .dr-typing-bubble span:nth-child(2) { animation-delay:0.2s; }
+    .dr-typing-bubble span:nth-child(3) { animation-delay:0.4s; }
+    @keyframes dr-bounce { 0%,60%,100%{transform:translateY(0);} 30%{transform:translateY(-5px);} }
 
-    /* Suggestions */
+    /* Chips */
     #dr-chips {
-      display: flex; flex-wrap: wrap; gap: 6px;
-      padding: 6px 10px 8px; flex-shrink: 0;
+      display:flex; flex-wrap:wrap; gap:6px;
+      padding:6px 10px 8px; flex-shrink:0;
     }
     .dr-chip {
-      font-size: 12px; background: white; color: #2d2d6b;
-      border: 1px solid #d4d1ed; border-radius: 16px;
-      padding: 5px 11px; cursor: pointer;
-      font-family: 'DM Sans', sans-serif; transition: background 0.15s;
+      font-size:12px; background:white; color:#2d2d6b;
+      border:1px solid #d4d1ed; border-radius:16px;
+      padding:5px 11px; cursor:pointer;
+      font-family:'DM Sans',sans-serif; transition:background 0.15s;
     }
-    .dr-chip:hover { background: #eae8f5; }
+    .dr-chip:hover { background:#eae8f5; }
 
-    /* Input row */
+    /* Input */
     #dr-input-row {
-      display: flex; align-items: center; gap: 8px;
-      padding: 8px 10px; background: #f0f0f0; flex-shrink: 0;
+      display:flex; align-items:center; gap:8px;
+      padding:8px 10px; background:#f0f0f0; flex-shrink:0;
     }
     #dr-input {
-      flex: 1; border: none; border-radius: 22px;
-      padding: 9px 14px; font-size: 13.5px; outline: none;
-      font-family: 'DM Sans', sans-serif; background: white;
-      color: #111;
+      flex:1; border:none; border-radius:22px;
+      padding:9px 14px; font-size:13.5px; outline:none;
+      font-family:'DM Sans',sans-serif; background:white; color:#111;
     }
     #dr-send {
-      width: 38px; height: 38px; border-radius: 50%;
-      background: #2d2d6b; color: white; border: none;
-      cursor: pointer; font-size: 15px; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s, transform 0.15s;
+      width:38px; height:38px; border-radius:50%;
+      background:#2d2d6b; color:white; border:none;
+      cursor:pointer; font-size:15px; flex-shrink:0;
+      display:flex; align-items:center; justify-content:center;
+      transition:background 0.2s, transform 0.15s;
     }
-    #dr-send:hover { background: #3d3d8b; transform: scale(1.08); }
+    #dr-send:hover { background:#3d3d8b; transform:scale(1.08); }
 
-    @media (max-width: 480px) {
-      #dr-win { width: calc(100vw - 24px); right: 12px; }
-      #dr-bubble { right: 16px; bottom: 16px; }
+    @media (max-width:480px) {
+      #dr-win { width:calc(100vw - 24px); right:12px; }
+      #dr-bubble-wrap { right:16px; bottom:16px; }
     }
   `;
   document.head.appendChild(style);
 
-  // ── Bubble
+  // ── BUILD BUBBLE WRAP
+  const bubbleWrap = document.createElement('div');
+  bubbleWrap.id = 'dr-bubble-wrap';
+
+  // Label pill
+  const label = document.createElement('div');
+  label.id = 'dr-bubble-label';
+  label.innerHTML = `
+    <div class="dr-label-top">💬 Chat with Divya</div>
+    <div class="dr-label-sub"><span class="dr-label-dot"></span>online now · ask me anything</div>
+  `;
+
+  // Photo bubble + online dot
+  const bubbleInner = document.createElement('div');
+  bubbleInner.id = 'dr-bubble-inner';
+
   const bubble = document.createElement('button');
   bubble.id = 'dr-bubble';
   bubble.setAttribute('aria-label', 'Chat with Divya');
-    bubble.innerHTML = `
+  bubble.innerHTML = `
     <img src="images/divya_ramroop.jpg" alt="Divya"
-      onerror="this.style.display='none'; document.querySelector('.bubble-fallback').style.display='flex';">
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
     <span class="bubble-fallback" style="display:none;">DR</span>
   `;
-  document.body.appendChild(bubble);
 
-  // Green online dot
   const onlineDot = document.createElement('div');
   onlineDot.id = 'dr-bubble-online';
-  document.body.appendChild(onlineDot);
 
-  // ── Window
+  bubbleInner.appendChild(bubble);
+  bubbleInner.appendChild(onlineDot);
+  bubbleWrap.appendChild(label);
+  bubbleWrap.appendChild(bubbleInner);
+  document.body.appendChild(bubbleWrap);
+
+  // ── BUILD CHAT WINDOW
   const win = document.createElement('div');
   win.id = 'dr-win';
 
-  const now = new Date();
-  const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  const dateStr = now.toLocaleDateString([], { weekday: 'long', day: 'numeric', month: 'long' });
+  const dateStr = new Date().toLocaleDateString([], { weekday:'long', day:'numeric', month:'long' });
 
   win.innerHTML = `
     <div id="dr-header">
@@ -400,18 +423,15 @@ function buildChatUI() {
       </div>
       <button id="dr-close">✕</button>
     </div>
-
     <div id="dr-msgs">
       <div class="dr-date-stamp">${dateStr}</div>
     </div>
-
     <div id="dr-chips">
       <button class="dr-chip">What do you research?</button>
       <button class="dr-chip">Your projects</button>
       <button class="dr-chip">How to contact you?</button>
       <button class="dr-chip">Your background</button>
     </div>
-
     <div id="dr-input-row">
       <input id="dr-input" type="text" placeholder="Message Divya…" autocomplete="off" maxlength="200">
       <button id="dr-send" aria-label="Send">➤</button>
@@ -424,10 +444,9 @@ function buildChatUI() {
   const status = win.querySelector('#dr-status');
 
   function getTime() {
-    return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    return new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
   }
 
-  // Add USER message with animated ticks
   function addUserMessage(text) {
     const wrap = document.createElement('div');
     wrap.className = 'dr-msg-wrap user';
@@ -435,29 +454,21 @@ function buildChatUI() {
       <div class="dr-bubble-text">${text}</div>
       <div class="dr-meta">
         <span class="dr-time">${getTime()}</span>
-        <span class="dr-ticks" id="tick-${Date.now()}">✓</span>
+        <span class="dr-ticks">✓</span>
       </div>
     `;
     msgs.appendChild(wrap);
     msgs.scrollTop = msgs.scrollHeight;
-
     const tick = wrap.querySelector('.dr-ticks');
-
-    // Single tick → double tick (delivered) → blue double tick (read)
     setTimeout(() => { tick.textContent = '✓✓'; tick.classList.add('delivered'); }, 500);
     setTimeout(() => { tick.classList.remove('delivered'); tick.classList.add('read'); }, 1000);
   }
 
-  // Add BOT (Divya) typing indicator
   function showTyping() {
     status.textContent = 'typing...';
     const wrap = document.createElement('div');
     wrap.id = 'dr-typing-wrap';
-    wrap.innerHTML = `
-      <div class="dr-typing-bubble">
-        <span></span><span></span><span></span>
-      </div>
-    `;
+    wrap.innerHTML = `<div class="dr-typing-bubble"><span></span><span></span><span></span></div>`;
     msgs.appendChild(wrap);
     msgs.scrollTop = msgs.scrollHeight;
   }
@@ -468,15 +479,12 @@ function buildChatUI() {
     status.textContent = 'online';
   }
 
-  // Add BOT message
   function addBotMessage(text) {
     const wrap = document.createElement('div');
     wrap.className = 'dr-msg-wrap bot';
     wrap.innerHTML = `
       <div class="dr-bubble-text">${text}</div>
-      <div class="dr-meta">
-        <span class="dr-time">${getTime()}</span>
-      </div>
+      <div class="dr-meta"><span class="dr-time">${getTime()}</span></div>
     `;
     msgs.appendChild(wrap);
     msgs.scrollTop = msgs.scrollHeight;
@@ -487,45 +495,44 @@ function buildChatUI() {
     if (!text) return;
     input.value = '';
     win.querySelector('#dr-chips').style.display = 'none';
-
     addUserMessage(text);
-
-    // Delay = simulate Divya reading + typing
     const typingDelay = 900 + Math.random() * 600;
-    const readDelay   = 1000;
-
     setTimeout(() => {
       showTyping();
       setTimeout(() => {
         removeTyping();
-        const response = getResponse(text);
-        addBotMessage(response);
+        addBotMessage(getResponse(text));
       }, typingDelay);
-    }, readDelay);
+    }, 1000);
   }
 
-  // Open / close
-  bubble.addEventListener('click', () => {
-    const isOpen = win.classList.contains('open');
-    win.classList.toggle('open');
-    if (!isOpen) {
-      if (msgs.querySelectorAll('.dr-msg-wrap').length === 0) {
+  function openChat() {
+    win.classList.add('open');
+    label.style.display = 'none';
+    if (msgs.querySelectorAll('.dr-msg-wrap').length === 0) {
+      setTimeout(() => {
+        showTyping();
         setTimeout(() => {
-          showTyping();
-          setTimeout(() => {
-            removeTyping();
-            addBotMessage("Hey! 👋 I'm Divya. Feel free to ask me anything about my research, projects, or how to get in touch!");
-          }, 900);
-        }, 300);
-      }
-      setTimeout(() => input.focus(), 250);
+          removeTyping();
+          addBotMessage("Hey! 👋 I'm Divya. Feel free to ask me anything about my research, projects, or how to get in touch!");
+        }, 900);
+      }, 300);
     }
-  });
+    setTimeout(() => input.focus(), 250);
+  }
 
-  win.querySelector('#dr-close').addEventListener('click', () => win.classList.remove('open'));
+  function closeChat() {
+    win.classList.remove('open');
+    label.style.display = 'flex';
+  }
+
+  bubble.addEventListener('click', () => {
+    win.classList.contains('open') ? closeChat() : openChat();
+  });
+  label.addEventListener('click', openChat);
+  win.querySelector('#dr-close').addEventListener('click', closeChat);
   win.querySelector('#dr-send').addEventListener('click', () => sendMessage(input.value));
   input.addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(input.value); });
-
   win.querySelectorAll('.dr-chip').forEach(chip => {
     chip.addEventListener('click', () => sendMessage(chip.textContent));
   });
