@@ -184,22 +184,37 @@ function buildChatUI() {
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap');
 
     #dr-bubble {
-      position: fixed; bottom: 28px; right: 28px; z-index: 9999;
-      width: 58px; height: 58px; border-radius: 50%;
-      background: #2d2d6b; border: none; cursor: pointer;
-      box-shadow: 0 4px 22px rgba(45,45,107,0.38);
-      display: flex; align-items: center; justify-content: center;
-      transition: transform 0.2s, box-shadow 0.2s;
-      overflow: hidden; padding: 0;
-    }
-    #dr-bubble:hover { transform: scale(1.07); box-shadow: 0 6px 30px rgba(45,45,107,0.48); }
-    #dr-bubble img {
-      width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
-    }
-    #dr-bubble .bubble-fallback {
-      font-size: 20px; font-weight: 700; color: white;
-      font-family: 'DM Sans', sans-serif;
-    }
+  position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+  width: 62px; height: 62px; border-radius: 50%;
+  background: #2d2d6b; border: none; cursor: pointer;
+  box-shadow: 0 4px 22px rgba(45,45,107,0.38);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  overflow: hidden; padding: 0;
+  border: 3px solid #ffffff;
+}
+#dr-bubble:hover { transform: scale(1.07); box-shadow: 0 6px 30px rgba(45,45,107,0.48); }
+#dr-bubble img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 50%;
+  display: block;
+}
+#dr-bubble .bubble-fallback {
+  font-size: 20px; font-weight: 700; color: white;
+  font-family: 'DM Sans', sans-serif;
+}
+#dr-bubble-online {
+  position: fixed;
+  bottom: 30px; right: 30px;
+  width: 14px; height: 14px;
+  background: #25d366;
+  border-radius: 50%;
+  border: 2px solid white;
+  z-index: 10000;
+  pointer-events: none;
+}
 
     #dr-win {
       position: fixed; bottom: 96px; right: 28px; z-index: 9998;
@@ -354,12 +369,17 @@ function buildChatUI() {
   const bubble = document.createElement('button');
   bubble.id = 'dr-bubble';
   bubble.setAttribute('aria-label', 'Chat with Divya');
-  bubble.innerHTML = `
+    bubble.innerHTML = `
     <img src="images/divya_ramroop.jpg" alt="Divya"
       onerror="this.style.display='none'; document.querySelector('.bubble-fallback').style.display='flex';">
     <span class="bubble-fallback" style="display:none;">DR</span>
   `;
   document.body.appendChild(bubble);
+
+  // Green online dot
+  const onlineDot = document.createElement('div');
+  onlineDot.id = 'dr-bubble-online';
+  document.body.appendChild(onlineDot);
 
   // ── Window
   const win = document.createElement('div');
