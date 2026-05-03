@@ -67,12 +67,51 @@ function scoreIntent(input, intent) {
 }
 function getResponse(input) {
   if (!input.trim()) return null;
+
+  const norm = normalize(input);
+
+  // Hard-coded direct phrase matches first (highest priority)
+  const directMap = [
+    { phrases: ["your background", "about your background", "tell me your background"], id: "who" },
+    { phrases: ["your experience", "whats your experience", "what is your experience", "work experience", "professional experience"], id: "current_role" },
+    { phrases: ["your education", "what education", "education background", "your qualifications", "your degrees", "your studies"], id: "education" },
+    { phrases: ["your research", "what do you research", "research interests", "what are your research interests"], id: "research" },
+    { phrases: ["your projects", "what projects", "current projects", "what are your projects"], id: "projects" },
+    { phrases: ["contact you", "how to contact", "get in touch", "reach you", "your email", "your linkedin"], id: "contact" },
+    { phrases: ["your inspiration", "who inspires you", "who is your inspiration", "what inspires you"], id: "motivation" },
+    { phrases: ["your publications", "published work", "your papers", "your articles"], id: "publications" },
+    { phrases: ["your skills", "technical skills", "what can you do", "your expertise"], id: "skills" },
+    { phrases: ["hire you", "hiring", "work with you", "job opportunity", "open to work"], id: "hire" },
+    { phrases: ["collaborate", "work together", "partnership", "co-author"], id: "collaborate" },
+    { phrases: ["your goals", "future plans", "ambitions", "where do you see yourself"], id: "goals" },
+    { phrases: ["your motivation", "why research", "what drives you", "why did you choose"], id: "motivation" },
+    { phrases: ["football", "favorite sport", "favourite sport", "sport", "watch sport"], id: "sports" },
+    { phrases: ["favorite music", "favourite music", "music taste", "what music", "listen to"], id: "music" },
+    { phrases: ["fun fact", "something interesting", "surprise me"], id: "fun_fact" },
+    { phrases: ["where are you from", "where do you live", "where are you based", "your location"], id: "location" },
+  ];
+
+  for (const entry of directMap) {
+    for (const phrase of entry.phrases) {
+      if (norm.includes(phrase) || norm === phrase) {
+        const intent = INTENTS.find(i => i.id === entry.id);
+        if (intent) return intent.response;
+      }
+    }
+  }
+
+  // Fuzzy scoring fallback
   let best = null, bestScore = 0;
   for (const intent of INTENTS) {
     const score = scoreIntent(input, intent);
     if (score > bestScore) { bestScore = score; best = intent; }
   }
-  if (bestScore < 3) return "Hmm, I'm not sure I caught that! Try asking about my research, projects, background, or how to reach me. Or email me at <a href='mailto:contactdramroop@gmail.com' style='color:#2d2d6b;font-weight:600;'>contactdramroop@gmail.com</a> 😊";
+
+  // Raise the confidence threshold and return fallback if not confident
+  if (bestScore < 6) {
+    return "That's a great question! I'm not able to answer everything here, but I'd love to chat properly. Let's connect! You can reach me at <a href='mailto:contactdramroop@gmail.com' style='color:#2d2d6b;font-weight:600;'>contactdramroop@gmail.com</a> or on <a href='https://linkedin.com/in/divya-ramroop' target='_blank' style='color:#2d2d6b;font-weight:600;'>LinkedIn</a>. 😊";
+  }
+
   return best.response;
 }
 
