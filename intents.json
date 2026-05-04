@@ -1,7 +1,7 @@
 [
   {
     "id": "greeting",
-    "triggers": ["who are you", "tell me about yourself", "about you", "introduce yourself", "introduction", "profile", "yourself", "who is divya", "about divya", "your background", "background", "about yourself"]
+    "triggers": ["who are you", "tell me about yourself", "about you", "introduce yourself", "introduction", "profile", "yourself", "who is divya", "about divya", "your background", "background", "about yourself"],
     "response": "Hey! 👋 So nice to hear from you. Feel free to ask me anything about my research, projects, background, or just how to get in touch!"
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "id": "current_role",
-   "triggers": ["work", "job", "role", "position", "current role", "where do you work", "employed", "affiliation", "tu berlin", "observatory", "what do you do", "experience", "work experience", "professional experience", "your experience", "clinical experience"]
+   "triggers": ["work", "job", "role", "position", "current role", "where do you work", "employed", "affiliation", "tu berlin", "observatory", "what do you do", "experience", "work experience", "professional experience", "your experience", "clinical experience"],
     "response": "I currently hold two Research Fellow positions. One at TU Berlin's Department of Health Care Management, and one at the European Observatory on Health Systems and Policies at the Berlin Hub. I contribute to OBS-PACE, a project focused on cancer research and policy across EU member states."
   },
   {
@@ -31,7 +31,7 @@
   },
   {
     "id": "education",
-   "triggers": ["degree", "education", "university", "qualification", "mbbs", "msc", "masters", "bachelor", "graduate", "charite", "charité", "southern medical", "utm", "studied where", "academic background", "your education", "what education", "studies", "your qualifications", "your degrees"]
+   "triggers": ["degree", "education", "university", "qualification", "mbbs", "msc", "masters", "bachelor", "graduate", "charite", "charité", "southern medical", "utm", "studied where", "academic background", "your education", "what education", "studies", "your qualifications", "your degrees"],
     "response": "I hold three degrees. An MBBS from Southern Medical University in China, an MSc in Health Services Management from the University of Technology Mauritius, and an MSc in Epidemiology from Charité Universitätsmedizin Berlin. Each took me somewhere completely new, quite literally."
   },
   {
@@ -101,7 +101,7 @@
   },
   {
     "id": "motivation",
-    "triggers": ["motivation", "motivated", "why research", "why health", "why did you choose", "what drives you", "passion", "why do you do this", "what inspires you", "purpose", "inspiration", "who inspires you", "your inspiration", "role model", "what motivated you"]
+    "triggers": ["motivation", "motivated", "why research", "why health", "why did you choose", "what drives you", "passion", "why do you do this", "what inspires you", "purpose", "inspiration", "who inspires you", "your inspiration", "role model", "what motivated you"],
     "response": "Honestly, it comes from clinical practice. Working as a doctor, I saw repeatedly where the system failed people, not because of a lack of medical knowledge, but because of structural problems. Access, cost, stigma, geography. Research felt like the place where I could try to understand and address those gaps rather than just work around them one patient at a time. That's still what gets me up in the morning."
   },
   {
